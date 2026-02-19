@@ -801,6 +801,35 @@ footer {
   .social-links { justify-content: center; }
 }
 
+/* ══════════════════════════════════════════════════════════
+   SUPPORT THE DEVELOPER
+   ══════════════════════════════════════════════════════════ */
+.support-section {
+  background: linear-gradient(180deg, #060e1f 0%, #000 100%);
+  padding: 80px 0;
+}
+.btn-coffee {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 36px;
+  background: linear-gradient(135deg, #ff9100, #e67e00);
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.25s, transform 0.25s, box-shadow 0.25s;
+  box-shadow: 0 4px 24px rgba(255, 145, 0, 0.3);
+}
+.btn-coffee:hover {
+  background: linear-gradient(135deg, #ffaa33, #ff9100);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(255, 145, 0, 0.45);
+}
+
 /* ── Particles (subtle background decoration) ────────── */
 .particles {
   position: absolute;
@@ -1116,6 +1145,20 @@ footer {
         <a href="https://apps.apple.com/app/oneanswerai/id6756519049" class="btn-primary">Upgrade to Pro</a>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SUPPORT THE DEVELOPER
+     ═══════════════════════════════════════════════════════ -->
+<section class="support-section" id="support">
+  <div class="container" style="text-align:center;">
+    <h2 class="section-title reveal">Support the Developer</h2>
+    <p class="section-subtitle reveal">OneAnswerAI is built by an indie developer. If you enjoy the app, consider buying me a coffee.</p>
+    <a href="https://paypal.me/leviathan888" target="_blank" rel="noopener noreferrer" class="btn-coffee reveal" style="transition-delay:0.1s;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+      Buy Me a Coffee
+    </a>
   </div>
 </section>
 
