@@ -401,9 +401,9 @@ nav .container {
   align-self: flex-start;
   border-bottom-left-radius: 4px;
 }
-.chat-a.gpt { background: rgba(16,163,127,0.2); border: 1px solid rgba(16,163,127,0.3); color: #6ee7b7; animation-delay: 0.7s; }
-.chat-a.claude { background: rgba(204,120,50,0.15); border: 1px solid rgba(204,120,50,0.3); color: #f0b87a; animation-delay: 1.0s; }
-.chat-a.gemini { background: rgba(66,133,244,0.15); border: 1px solid rgba(66,133,244,0.3); color: #93bbfd; animation-delay: 1.3s; }
+.chat-a.standard { background: rgba(16,163,127,0.2); border: 1px solid rgba(16,163,127,0.3); color: #6ee7b7; animation-delay: 0.7s; }
+.chat-a.fast { background: rgba(204,120,50,0.15); border: 1px solid rgba(204,120,50,0.3); color: #f0b87a; animation-delay: 1.0s; }
+.chat-a.premium { background: rgba(66,133,244,0.15); border: 1px solid rgba(66,133,244,0.3); color: #93bbfd; animation-delay: 1.3s; }
 .chat-a.fused {
   background: linear-gradient(135deg, rgba(0,122,255,0.2), rgba(138,43,226,0.15));
   border: 1px solid rgba(0,122,255,0.35);
@@ -575,9 +575,9 @@ nav .container {
   font-size: 1.6rem;
   font-weight: 800;
 }
-.model-logo.gpt    { background: linear-gradient(135deg, rgba(16,163,127,0.2), rgba(16,163,127,0.05)); border: 1px solid rgba(16,163,127,0.25); color: #10a37f; }
-.model-logo.claude  { background: linear-gradient(135deg, rgba(204,120,50,0.2), rgba(204,120,50,0.05)); border: 1px solid rgba(204,120,50,0.25); color: #cc7832; }
-.model-logo.gemini  { background: linear-gradient(135deg, rgba(66,133,244,0.2), rgba(66,133,244,0.05)); border: 1px solid rgba(66,133,244,0.25); color: #4285f4; }
+.model-logo.standard    { background: linear-gradient(135deg, rgba(16,163,127,0.2), rgba(16,163,127,0.05)); border: 1px solid rgba(16,163,127,0.25); color: #10a37f; }
+.model-logo.fast  { background: linear-gradient(135deg, rgba(204,120,50,0.2), rgba(204,120,50,0.05)); border: 1px solid rgba(204,120,50,0.25); color: #cc7832; }
+.model-logo.premium  { background: linear-gradient(135deg, rgba(66,133,244,0.2), rgba(66,133,244,0.05)); border: 1px solid rgba(66,133,244,0.25); color: #4285f4; }
 .model-card h3 {
   font-size: 1.2rem;
   font-weight: 700;
@@ -602,9 +602,9 @@ nav .container {
   font-size: 0.75rem;
   font-weight: 600;
 }
-.model-tag.gpt    { background: rgba(16,163,127,0.12); color: #6ee7b7; }
-.model-tag.claude  { background: rgba(204,120,50,0.12); color: #f0b87a; }
-.model-tag.gemini  { background: rgba(66,133,244,0.12); color: #93bbfd; }
+.model-tag.standard    { background: rgba(16,163,127,0.12); color: #6ee7b7; }
+.model-tag.fast  { background: rgba(204,120,50,0.12); color: #f0b87a; }
+.model-tag.premium  { background: rgba(66,133,244,0.12); color: #93bbfd; }
 
 @media (max-width: 768px) {
   .models-grid { grid-template-columns: 1fr; }
@@ -930,15 +930,15 @@ footer {
           </div>
           <div class="phone-chat">
             <div class="chat-q">What causes the northern lights?</div>
-            <div class="chat-a gpt">
+            <div class="chat-a standard">
               <div class="chat-label">Standard</div>
               Charged particles from the sun interact with Earth's magnetosphere...
             </div>
-            <div class="chat-a claude">
+            <div class="chat-a fast">
               <div class="chat-label">Fast</div>
               Aurora borealis occurs when solar wind excites atmospheric gases...
             </div>
-            <div class="chat-a gemini">
+            <div class="chat-a premium">
               <div class="chat-label">Premium</div>
               Solar storms eject plasma that collides with nitrogen and oxygen...
             </div>
