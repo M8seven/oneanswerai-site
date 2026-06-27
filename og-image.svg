@@ -1,62 +1,53 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
   <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#0a0a0a;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#1a1a3a;stop-opacity:1" />
-    </linearGradient>
-    <!-- Subtle glow for accent elements -->
-    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="8" result="blur"/>
-      <feMerge>
-        <feMergeNode in="blur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
+    <radialGradient id="bg" cx="50%" cy="32%" r="75%">
+      <stop offset="0%" style="stop-color:#0c0c0c;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#000000;stop-opacity:1" />
+    </radialGradient>
   </defs>
 
   <!-- Background -->
   <rect width="1200" height="630" fill="url(#bg)"/>
 
-  <!-- Decorative accent circles (brand #007AFF) -->
-  <circle cx="960" cy="120" r="180" fill="#007AFF" opacity="0.06"/>
-  <circle cx="240" cy="520" r="120" fill="#007AFF" opacity="0.04"/>
+  <!-- Tight cyan accent glows (subtle, on-brand) -->
+  <circle cx="1010" cy="120" r="150" fill="#00B4FF" opacity="0.05"/>
+  <circle cx="200" cy="540" r="110" fill="#00B4FF" opacity="0.04"/>
 
-  <!-- Brain icon (simplified SVG brain shape, accent blue) -->
-  <g transform="translate(540, 110)" filter="url(#glow)">
-    <!-- Left hemisphere -->
-    <path d="M60,80 C60,40 30,10 0,10 C-30,10 -55,30 -55,60 C-55,80 -45,95 -30,102 C-35,110 -38,120 -35,130 C-32,145 -18,155 -5,152 C-2,162 5,168 14,168 C14,148 14,128 14,108 C14,100 30,95 40,88 C52,82 60,80 60,80 Z" fill="#007AFF" opacity="0.9"/>
-    <!-- Right hemisphere -->
-    <path d="M60,80 C60,40 90,10 120,10 C150,10 175,30 175,60 C175,80 165,95 150,102 C155,110 158,120 155,130 C152,145 138,155 125,152 C122,162 115,168 106,168 C106,148 106,128 106,108 C106,100 90,95 80,88 C68,82 60,80 60,80 Z" fill="#007AFF" opacity="0.9"/>
-    <!-- Center bridge -->
-    <rect x="14" y="85" width="92" height="12" rx="6" fill="#007AFF" opacity="0.7"/>
-    <!-- Neural detail lines -->
-    <line x1="-30" y1="60" x2="-10" y2="80" stroke="#ffffff" stroke-width="2" opacity="0.3"/>
-    <line x1="-20" y1="100" x2="5" y2="115" stroke="#ffffff" stroke-width="2" opacity="0.3"/>
-    <line x1="150" y1="60" x2="126" y2="80" stroke="#ffffff" stroke-width="2" opacity="0.3"/>
-    <line x1="140" y1="100" x2="115" y2="115" stroke="#ffffff" stroke-width="2" opacity="0.3"/>
+  <!-- Fusion motif: three provider dots converging into one cyan answer -->
+  <g transform="translate(600, 138)">
+    <!-- connecting lines to center -->
+    <line x1="0" y1="-40" x2="0" y2="0" stroke="#2a2a2a" stroke-width="2"/>
+    <line x1="-38" y1="26" x2="0" y2="0" stroke="#2a2a2a" stroke-width="2"/>
+    <line x1="38" y1="26" x2="0" y2="0" stroke="#2a2a2a" stroke-width="2"/>
+    <!-- provider rings -->
+    <circle cx="0" cy="-40" r="20" fill="none" stroke="#34C759" stroke-width="3"/>
+    <circle cx="-38" cy="26" r="20" fill="none" stroke="#2D7FF9" stroke-width="3"/>
+    <circle cx="38" cy="26" r="20" fill="none" stroke="#FF9F0A" stroke-width="3"/>
+    <!-- fused answer -->
+    <circle cx="0" cy="0" r="13" fill="#00B4FF"/>
   </g>
 
+  <!-- Brand name -->
+  <text x="600" y="262" font-family="'Space Grotesk', Helvetica, Arial, sans-serif"
+        font-size="26" font-weight="600" fill="#00B4FF" text-anchor="middle"
+        letter-spacing="6">ONEANSWERAI</text>
+
   <!-- Main title -->
-  <text x="600" y="360" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
-        font-size="72" font-weight="700" fill="#ffffff" text-anchor="middle"
-        letter-spacing="-1">Three AIs. One Perfect Answer.</text>
+  <text x="600" y="360" font-family="'Space Grotesk', Helvetica, Arial, sans-serif"
+        font-size="78" font-weight="700" fill="#ffffff" text-anchor="middle"
+        letter-spacing="-2">Three AIs. One Answer.</text>
 
-  <!-- Subtitle: AI brands -->
-  <text x="600" y="432" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
-        font-size="36" font-weight="400" fill="#cccccc" text-anchor="middle"
-        letter-spacing="2">GPT-4o · Claude · Gemini</text>
-
-  <!-- Brand name above title -->
-  <text x="600" y="306" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
-        font-size="28" font-weight="600" fill="#007AFF" text-anchor="middle"
-        letter-spacing="4">ONEANSWERAI</text>
+  <!-- Subtitle: AI families (no model trademarks) -->
+  <text x="600" y="430" font-family="Helvetica, Arial, sans-serif"
+        font-size="34" font-weight="400" fill="#9a9a9a" text-anchor="middle"
+        letter-spacing="1">OpenAI &#183; Google Gemini &#183; Anthropic Claude</text>
 
   <!-- Footer URL -->
-  <text x="1164" y="606" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
-        font-size="24" font-weight="400" fill="#888888" text-anchor="end">one-answer-ai.com</text>
+  <text x="1164" y="600" font-family="Helvetica, Arial, sans-serif"
+        font-size="24" font-weight="400" fill="#777777" text-anchor="end">one-answer-ai.com</text>
 
-  <!-- Top-left accent dot -->
-  <circle cx="36" cy="36" r="6" fill="#007AFF" opacity="0.5"/>
-  <circle cx="60" cy="36" r="4" fill="#007AFF" opacity="0.3"/>
-  <circle cx="80" cy="36" r="3" fill="#007AFF" opacity="0.2"/>
+  <!-- Top-left accent dots -->
+  <circle cx="40" cy="40" r="6" fill="#00B4FF" opacity="0.6"/>
+  <circle cx="64" cy="40" r="4" fill="#00B4FF" opacity="0.35"/>
+  <circle cx="84" cy="40" r="3" fill="#00B4FF" opacity="0.2"/>
 </svg>

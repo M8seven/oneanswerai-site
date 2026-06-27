@@ -1,1323 +1,281 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OneAnswerAI — Multiple AIs. One Perfect Answer.</title>
-<meta name="description" content="Ask once. Multiple leading AI providers answer. OneAnswerAI fuses them into one perfect response.">
-<meta name="theme-color" content="#007AFF">
-<!-- Open Graph -->
-<meta property="og:type" content="website">
-<meta property="og:title" content="OneAnswerAI — Multiple AIs. One Perfect Answer.">
-<meta property="og:description" content="Ask once. Multiple leading AI providers answer. OneAnswerAI fuses them into one perfect response.">
-<meta property="og:url" content="https://one-answer-ai.com">
-<meta property="og:site_name" content="OneAnswerAI">
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="OneAnswerAI — Multiple AIs. One Perfect Answer.">
-<meta name="twitter:description" content="Ask once. Multiple leading AI providers answer. OneAnswerAI fuses them into one perfect response.">
-<style>
-/* ── Reset & Base ────────────────────────────────────────── */
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-html {
-  scroll-behavior: smooth;
-  -webkit-text-size-adjust: 100%;
-}
-
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
-  background: #000;
-  color: #e4e8f1;
-  line-height: 1.6;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* ── Utility ─────────────────────────────────────────────── */
-.container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
-
-section {
-  padding: 100px 0;
-  position: relative;
-}
-
-h2.section-title {
-  font-size: clamp(1.8rem, 4vw, 2.6rem);
-  font-weight: 700;
-  text-align: center;
-  margin-bottom: 16px;
-  letter-spacing: -0.02em;
-}
-
-p.section-subtitle {
-  text-align: center;
-  color: #8e99af;
-  font-size: 1.1rem;
-  max-width: 600px;
-  margin: 0 auto 60px;
-}
-
-/* ── Fade-in on scroll ───────────────────────────────────── */
-.reveal {
-  opacity: 0;
-  transform: translateY(36px);
-  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* stagger children */
-.reveal-children > * {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.reveal-children.visible > *:nth-child(1) { transition-delay: 0.05s; opacity: 1; transform: translateY(0); }
-.reveal-children.visible > *:nth-child(2) { transition-delay: 0.15s; opacity: 1; transform: translateY(0); }
-.reveal-children.visible > *:nth-child(3) { transition-delay: 0.25s; opacity: 1; transform: translateY(0); }
-.reveal-children.visible > *:nth-child(4) { transition-delay: 0.35s; opacity: 1; transform: translateY(0); }
-.reveal-children.visible > *:nth-child(5) { transition-delay: 0.45s; opacity: 1; transform: translateY(0); }
-.reveal-children.visible > *:nth-child(6) { transition-delay: 0.55s; opacity: 1; transform: translateY(0); }
-.reveal-children.visible > *:nth-child(7) { transition-delay: 0.65s; opacity: 1; transform: translateY(0); }
-
-/* ── Glass card ──────────────────────────────────────────── */
-.glass {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 20px;
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
-}
-.glass:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(0, 122, 255, 0.12);
-  border-color: rgba(0, 122, 255, 0.25);
-}
-
-/* ── Buttons ─────────────────────────────────────────────── */
-.btn-primary {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 16px 36px;
-  background: #007AFF;
-  color: #fff;
-  font-size: 1.05rem;
-  font-weight: 600;
-  border: none;
-  border-radius: 14px;
-  cursor: pointer;
-  text-decoration: none;
-  transition: background 0.25s, transform 0.25s, box-shadow 0.25s;
-  box-shadow: 0 4px 24px rgba(0, 122, 255, 0.35);
-}
-.btn-primary:hover {
-  background: #0066d6;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(0, 122, 255, 0.5);
-}
-
-.btn-outline {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 16px 36px;
-  background: transparent;
-  color: #007AFF;
-  font-size: 1.05rem;
-  font-weight: 600;
-  border: 2px solid #007AFF;
-  border-radius: 14px;
-  cursor: pointer;
-  text-decoration: none;
-  transition: background 0.25s, transform 0.25s, color 0.25s;
-}
-.btn-outline:hover {
-  background: rgba(0, 122, 255, 0.1);
-  transform: translateY(-2px);
-  color: #3399ff;
-}
-
-/* ══════════════════════════════════════════════════════════
-   NAVIGATION
-   ══════════════════════════════════════════════════════════ */
-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
-  padding: 18px 0;
-  transition: background 0.3s, box-shadow 0.3s, padding 0.3s;
-}
-nav.scrolled {
-  background: rgba(0, 0, 0, 0.75);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  box-shadow: 0 1px 0 rgba(255,255,255,0.06);
-  padding: 12px 0;
-}
-nav .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.nav-logo {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #fff;
-  text-decoration: none;
-  letter-spacing: -0.02em;
-}
-.nav-logo span { color: #007AFF; }
-.nav-links { display: flex; gap: 32px; list-style: none; }
-.nav-links a {
-  color: #8e99af;
-  text-decoration: none;
-  font-size: 0.92rem;
-  font-weight: 500;
-  transition: color 0.25s;
-}
-.nav-links a:hover { color: #fff; }
-.nav-cta {
-  padding: 10px 22px !important;
-  font-size: 0.9rem !important;
-  border-radius: 10px !important;
-}
-
-/* Mobile nav toggle */
-.nav-toggle {
-  display: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 4px;
-}
-.nav-toggle span {
-  display: block;
-  width: 24px;
-  height: 2px;
-  background: #fff;
-  margin: 5px 0;
-  transition: transform 0.3s, opacity 0.3s;
-}
-
-@media (max-width: 768px) {
-  .nav-toggle { display: block; }
-  .nav-links {
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0.96);
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 28px;
-    transform: translateX(100%);
-    transition: transform 0.35s ease;
-  }
-  .nav-links.open { transform: translateX(0); }
-  .nav-links a { font-size: 1.2rem; }
-}
-
-/* ══════════════════════════════════════════════════════════
-   HERO
-   ══════════════════════════════════════════════════════════ */
-.hero {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  padding-top: 80px;
-  background: linear-gradient(170deg, #000 0%, #060e1f 40%, #0a1628 70%, #000 100%);
-  background-size: 200% 200%;
-  animation: heroGradient 12s ease infinite;
-  position: relative;
-  overflow: hidden;
-}
-@keyframes heroGradient {
-  0%   { background-position: 0% 0%; }
-  50%  { background-position: 100% 100%; }
-  100% { background-position: 0% 0%; }
-}
-
-/* Ambient glow */
-.hero::before {
-  content: '';
-  position: absolute;
-  top: -20%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 800px;
-  height: 800px;
-  background: radial-gradient(circle, rgba(0,122,255,0.12) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-.hero .container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: center;
-}
-
-.hero-text h1 {
-  font-size: clamp(2.4rem, 5.5vw, 3.8rem);
-  font-weight: 800;
-  line-height: 1.12;
-  letter-spacing: -0.03em;
-  margin-bottom: 20px;
-}
-.hero-text h1 .accent { color: #007AFF; }
-.hero-text .subtitle {
-  font-size: clamp(1rem, 2vw, 1.25rem);
-  color: #8e99af;
-  margin-bottom: 36px;
-  max-width: 500px;
-  line-height: 1.65;
-}
-
-.hero-badges {
-  display: flex;
-  gap: 12px;
-  margin-top: 20px;
-  flex-wrap: wrap;
-}
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 14px;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.08);
-  font-size: 0.82rem;
-  color: #8e99af;
-}
-
-/* ── iPhone Mockup (pure CSS/SVG) ───────────────────────── */
-.phone-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-}
-
-/* Glow behind phone */
-.phone-wrapper::before {
-  content: '';
-  position: absolute;
-  width: 300px;
-  height: 500px;
-  background: radial-gradient(ellipse, rgba(0,122,255,0.18) 0%, transparent 70%);
-  filter: blur(40px);
-  pointer-events: none;
-}
-
-.phone {
-  width: 280px;
-  height: 570px;
-  border-radius: 44px;
-  border: 3px solid rgba(255,255,255,0.15);
-  background: linear-gradient(180deg, #0d1b2e 0%, #0a1222 100%);
-  position: relative;
-  box-shadow:
-    0 0 0 1px rgba(255,255,255,0.05),
-    0 30px 80px rgba(0,0,0,0.6),
-    inset 0 1px 0 rgba(255,255,255,0.08);
-  overflow: hidden;
-}
-
-/* Notch */
-.phone-notch {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 120px;
-  height: 32px;
-  background: #000;
-  border-radius: 0 0 20px 20px;
-  z-index: 2;
-}
-
-/* Status bar */
-.phone-status {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 24px 0;
-  font-size: 0.7rem;
-  font-weight: 600;
-  color: #fff;
-}
-
-/* Phone screen content */
-.phone-screen {
-  padding: 44px 18px 18px;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-.phone-header {
-  text-align: center;
-  margin-bottom: 14px;
-}
-.phone-header .app-name {
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: #fff;
-}
-.phone-header .app-tag {
-  font-size: 0.6rem;
-  color: #007AFF;
-  margin-top: 2px;
-}
-
-/* Chat bubbles */
-.phone-chat { display: flex; flex-direction: column; gap: 8px; }
-.chat-q, .chat-a {
-  padding: 10px 14px;
-  border-radius: 16px;
-  font-size: 0.68rem;
-  line-height: 1.45;
-  max-width: 88%;
-  animation: bubbleFade 0.6s ease forwards;
-  opacity: 0;
-}
-.chat-q {
-  align-self: flex-end;
-  background: #007AFF;
-  color: #fff;
-  border-bottom-right-radius: 4px;
-  animation-delay: 0.3s;
-}
-.chat-a {
-  align-self: flex-start;
-  border-bottom-left-radius: 4px;
-}
-.chat-a.standard { background: rgba(16,163,127,0.2); border: 1px solid rgba(16,163,127,0.3); color: #6ee7b7; animation-delay: 0.7s; }
-.chat-a.fast { background: rgba(204,120,50,0.15); border: 1px solid rgba(204,120,50,0.3); color: #f0b87a; animation-delay: 1.0s; }
-.chat-a.premium { background: rgba(66,133,244,0.15); border: 1px solid rgba(66,133,244,0.3); color: #93bbfd; animation-delay: 1.3s; }
-.chat-a.fused {
-  background: linear-gradient(135deg, rgba(0,122,255,0.2), rgba(138,43,226,0.15));
-  border: 1px solid rgba(0,122,255,0.35);
-  color: #c8dcff;
-  animation-delay: 1.8s;
-  max-width: 92%;
-}
-
-.chat-label {
-  font-size: 0.55rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  margin-bottom: 3px;
-  opacity: 0.7;
-}
-
-@keyframes bubbleFade {
-  from { opacity: 0; transform: translateY(8px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* Home indicator */
-.phone-home {
-  position: absolute;
-  bottom: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 120px;
-  height: 4px;
-  border-radius: 2px;
-  background: rgba(255,255,255,0.25);
-}
-
-@media (max-width: 900px) {
-  .hero .container {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-  .hero-text .subtitle { margin-left: auto; margin-right: auto; }
-  .hero-badges { justify-content: center; }
-  .phone-wrapper { margin-top: 20px; }
-  .phone { width: 240px; height: 490px; border-radius: 38px; }
-  .phone-notch { width: 100px; height: 28px; }
-}
-
-/* ══════════════════════════════════════════════════════════
-   HOW IT WORKS
-   ══════════════════════════════════════════════════════════ */
-.how-it-works {
-  background: linear-gradient(180deg, #000 0%, #060e1f 100%);
-}
-.steps-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-}
-.step {
-  text-align: center;
-  padding: 40px 28px;
-  position: relative;
-}
-.step-num {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 56px;
-  height: 56px;
-  border-radius: 16px;
-  background: rgba(0,122,255,0.12);
-  border: 1px solid rgba(0,122,255,0.2);
-  margin-bottom: 20px;
-}
-.step-num svg { width: 28px; height: 28px; }
-.step h3 {
-  font-size: 1.3rem;
-  font-weight: 700;
-  margin-bottom: 8px;
-  color: #fff;
-}
-.step p {
-  color: #8e99af;
-  font-size: 0.95rem;
-}
-
-/* Connector arrows between steps */
-.step:not(:last-child)::after {
-  content: '';
-  position: absolute;
-  right: -18px;
-  top: 63px;
-  width: 24px;
-  height: 2px;
-  background: linear-gradient(90deg, rgba(0,122,255,0.4), rgba(0,122,255,0.1));
-}
-
-@media (max-width: 768px) {
-  .steps-grid { grid-template-columns: 1fr; gap: 16px; }
-  .step:not(:last-child)::after { display: none; }
-}
-
-/* ══════════════════════════════════════════════════════════
-   WHY OneAnswerAI
-   ══════════════════════════════════════════════════════════ */
-.why-section {
-  background: linear-gradient(180deg, #060e1f 0%, #0a1628 50%, #060e1f 100%);
-}
-.benefits-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-}
-.benefit-card {
-  padding: 36px 32px;
-}
-.benefit-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 18px;
-  font-size: 1.5rem;
-}
-.benefit-icon.red    { background: rgba(255,59,48,0.12); border: 1px solid rgba(255,59,48,0.2); }
-.benefit-icon.blue   { background: rgba(0,122,255,0.12); border: 1px solid rgba(0,122,255,0.2); }
-.benefit-icon.green  { background: rgba(48,209,88,0.12); border: 1px solid rgba(48,209,88,0.2); }
-.benefit-icon.purple { background: rgba(175,82,222,0.12); border: 1px solid rgba(175,82,222,0.2); }
-.benefit-card h3 {
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: #fff;
-  margin-bottom: 8px;
-}
-.benefit-card p {
-  color: #8e99af;
-  font-size: 0.95rem;
-  line-height: 1.6;
-}
-
-@media (max-width: 768px) {
-  .benefits-grid { grid-template-columns: 1fr; }
-}
-
-/* ══════════════════════════════════════════════════════════
-   SUPPORTED AI MODELS
-   ══════════════════════════════════════════════════════════ */
-.models-section {
-  background: linear-gradient(180deg, #060e1f 0%, #000 100%);
-}
-.models-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-}
-.model-card {
-  padding: 36px 28px;
-  text-align: center;
-}
-.model-logo {
-  width: 64px;
-  height: 64px;
-  border-radius: 18px;
-  margin: 0 auto 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.6rem;
-  font-weight: 800;
-}
-.model-logo.standard    { background: linear-gradient(135deg, rgba(16,163,127,0.2), rgba(16,163,127,0.05)); border: 1px solid rgba(16,163,127,0.25); color: #10a37f; }
-.model-logo.fast  { background: linear-gradient(135deg, rgba(204,120,50,0.2), rgba(204,120,50,0.05)); border: 1px solid rgba(204,120,50,0.25); color: #cc7832; }
-.model-logo.premium  { background: linear-gradient(135deg, rgba(66,133,244,0.2), rgba(66,133,244,0.05)); border: 1px solid rgba(66,133,244,0.25); color: #4285f4; }
-.model-card h3 {
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: #fff;
-  margin-bottom: 6px;
-}
-.model-card .model-by {
-  font-size: 0.8rem;
-  color: #5a6580;
-  margin-bottom: 14px;
-}
-.model-card p {
-  color: #8e99af;
-  font-size: 0.92rem;
-  line-height: 1.55;
-}
-.model-tag {
-  display: inline-block;
-  margin-top: 14px;
-  padding: 5px 14px;
-  border-radius: 999px;
-  font-size: 0.75rem;
-  font-weight: 600;
-}
-.model-tag.standard    { background: rgba(16,163,127,0.12); color: #6ee7b7; }
-.model-tag.fast  { background: rgba(204,120,50,0.12); color: #f0b87a; }
-.model-tag.premium  { background: rgba(66,133,244,0.12); color: #93bbfd; }
-
-@media (max-width: 768px) {
-  .models-grid { grid-template-columns: 1fr; }
-}
-
-/* ══════════════════════════════════════════════════════════
-   LANGUAGES
-   ══════════════════════════════════════════════════════════ */
-.lang-section {
-  background: linear-gradient(180deg, #000 0%, #0a1628 100%);
-}
-.lang-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  justify-content: center;
-}
-.lang-chip {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 16px 28px;
-  border-radius: 16px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
-  font-size: 1rem;
-  font-weight: 600;
-  color: #c8d4e6;
-  transition: transform 0.3s, border-color 0.3s, background 0.3s;
-}
-.lang-chip:hover {
-  transform: translateY(-3px);
-  border-color: rgba(0,122,255,0.3);
-  background: rgba(0,122,255,0.06);
-}
-.lang-flag { font-size: 1.5rem; }
-
-/* ══════════════════════════════════════════════════════════
-   PRICING
-   ══════════════════════════════════════════════════════════ */
-.pricing-section {
-  background: linear-gradient(180deg, #0a1628 0%, #060e1f 100%);
-}
-.pricing-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 28px;
-  max-width: 800px;
-  margin: 0 auto;
-}
-.pricing-card {
-  padding: 44px 36px;
-  position: relative;
-  overflow: hidden;
-}
-.pricing-card.pro {
-  border-color: rgba(0,122,255,0.3);
-  background: rgba(0,122,255,0.05);
-}
-.pricing-card.pro::before {
-  content: 'POPULAR';
-  position: absolute;
-  top: 20px;
-  right: -30px;
-  background: #007AFF;
-  color: #fff;
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  padding: 4px 40px;
-  transform: rotate(45deg);
-}
-.pricing-label {
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: #007AFF;
-  margin-bottom: 8px;
-}
-.pricing-card h3 {
-  font-size: 1.8rem;
-  font-weight: 800;
-  color: #fff;
-  margin-bottom: 6px;
-}
-.pricing-card .price-desc {
-  color: #8e99af;
-  font-size: 0.9rem;
-  margin-bottom: 28px;
-}
-.pricing-features {
-  list-style: none;
-  margin-bottom: 32px;
-}
-.pricing-features li {
-  padding: 8px 0;
-  color: #c0c9db;
-  font-size: 0.92rem;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.pricing-features li::before {
-  content: '';
-  display: inline-block;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: rgba(48,209,88,0.15);
-  flex-shrink: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2330d158' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 10px;
-}
-.pricing-card .btn-primary,
-.pricing-card .btn-outline {
-  width: 100%;
-  justify-content: center;
-}
-
-@media (max-width: 768px) {
-  .pricing-grid { grid-template-columns: 1fr; }
-}
-
-/* ══════════════════════════════════════════════════════════
-   FOOTER
-   ══════════════════════════════════════════════════════════ */
-footer {
-  background: #000;
-  border-top: 1px solid rgba(255,255,255,0.06);
-  padding: 48px 0;
-}
-.footer-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: start;
-  flex-wrap: wrap;
-  gap: 32px;
-}
-.footer-brand .nav-logo { font-size: 1.15rem; }
-.footer-brand p {
-  color: #5a6580;
-  font-size: 0.85rem;
-  margin-top: 8px;
-  max-width: 260px;
-}
-.footer-links {
-  display: flex;
-  gap: 48px;
-  flex-wrap: wrap;
-}
-.footer-col h4 {
-  color: #fff;
-  font-size: 0.85rem;
-  font-weight: 600;
-  margin-bottom: 14px;
-}
-.footer-col a {
-  display: block;
-  color: #5a6580;
-  text-decoration: none;
-  font-size: 0.88rem;
-  padding: 4px 0;
-  transition: color 0.2s;
-}
-.footer-col a:hover { color: #007AFF; }
-.footer-bottom {
-  margin-top: 40px;
-  padding-top: 24px;
-  border-top: 1px solid rgba(255,255,255,0.05);
-  text-align: center;
-  color: #3d4659;
-  font-size: 0.82rem;
-}
-.social-links {
-  display: flex;
-  gap: 16px;
-  margin-top: 16px;
-}
-.social-links a {
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.08);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #5a6580;
-  text-decoration: none;
-  transition: background 0.2s, color 0.2s;
-}
-.social-links a:hover {
-  background: rgba(0,122,255,0.1);
-  color: #007AFF;
-}
-.social-links svg { width: 16px; height: 16px; }
-
-@media (max-width: 600px) {
-  .footer-inner { flex-direction: column; align-items: center; text-align: center; }
-  .footer-links { justify-content: center; gap: 32px; }
-  .social-links { justify-content: center; }
-}
-
-/* ══════════════════════════════════════════════════════════
-   SUPPORT THE DEVELOPER
-   ══════════════════════════════════════════════════════════ */
-.support-section {
-  background: linear-gradient(180deg, #060e1f 0%, #000 100%);
-  padding: 80px 0;
-}
-.btn-coffee {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 16px 36px;
-  background: linear-gradient(135deg, #ff9100, #e67e00);
-  color: #fff;
-  font-size: 1.05rem;
-  font-weight: 600;
-  border: none;
-  border-radius: 14px;
-  cursor: pointer;
-  text-decoration: none;
-  transition: background 0.25s, transform 0.25s, box-shadow 0.25s;
-  box-shadow: 0 4px 24px rgba(255, 145, 0, 0.3);
-}
-.btn-coffee:hover {
-  background: linear-gradient(135deg, #ffaa33, #ff9100);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(255, 145, 0, 0.45);
-}
-
-/* ── Particles (subtle background decoration) ────────── */
-.particles {
-  position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
-  pointer-events: none;
-  overflow: hidden;
-}
-.particle {
-  position: absolute;
-  border-radius: 50%;
-  background: rgba(0,122,255,0.15);
-  animation: particleFloat linear infinite;
-}
-@keyframes particleFloat {
-  0%   { transform: translateY(0) scale(1); opacity: 0; }
-  10%  { opacity: 1; }
-  90%  { opacity: 1; }
-  100% { transform: translateY(-100vh) scale(0.3); opacity: 0; }
-}
-</style>
-</head>
-<body>
-
-<!-- ═══════════════════════════════════════════════════════
-     NAVIGATION
-     ═══════════════════════════════════════════════════════ -->
-<nav id="mainNav">
-  <div class="container">
-    <a href="#" class="nav-logo">One<span>Answer</span>AI</a>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#how-it-works" onclick="closeNav()">How It Works</a></li>
-      <li><a href="#why" onclick="closeNav()">Why Us</a></li>
-      <li><a href="#models" onclick="closeNav()">AI Models</a></li>
-      <li><a href="#pricing" onclick="closeNav()">Pricing</a></li>
-      <li><a href="blog/index.html" onclick="closeNav()">Blog</a></li>
-      <li><a href="https://apps.apple.com/app/oneanswerai/id6756519049" class="btn-primary nav-cta" onclick="closeNav()">Get the App</a></li>
-    </ul>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</nav>
-
-<!-- ═══════════════════════════════════════════════════════
-     HERO
-     ═══════════════════════════════════════════════════════ -->
-<section class="hero" id="hero">
-  <div class="particles" id="particles"></div>
-  <div class="container">
-    <div class="hero-text">
-      <h1 class="reveal">Multiple AIs.<br><span class="accent">One Perfect Answer.</span></h1>
-      <p class="subtitle reveal" style="transition-delay:0.1s;">Ask once. Multiple leading AI providers answer. OneAnswerAI fuses them into one.</p>
-      <a href="https://apps.apple.com/app/oneanswerai/id6756519049" class="btn-primary reveal" style="transition-delay:0.2s;">
-        <!-- Apple icon -->
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-        Download on App Store
-      </a>
-      <div class="hero-badges reveal" style="transition-delay:0.3s;">
-        <span class="hero-badge">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#007AFF" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-          Picking Mode
-        </span>
-        <span class="hero-badge">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#007AFF" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-          Meta-Fusion
-        </span>
-        <span class="hero-badge">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#007AFF" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-          PDF &amp; Image Analysis
-        </span>
-      </div>
-    </div>
-
-    <!-- iPhone Mockup -->
-    <div class="phone-wrapper reveal" style="transition-delay:0.15s;">
-      <div class="phone">
-        <div class="phone-notch"></div>
-        <div class="phone-status">
-          <span>9:41</span>
-          <span>
-            <svg width="16" height="12" viewBox="0 0 16 12" fill="#fff"><rect x="0" y="6" width="3" height="6" rx="0.5"/><rect x="4.5" y="4" width="3" height="8" rx="0.5"/><rect x="9" y="1.5" width="3" height="10.5" rx="0.5"/><rect x="13.5" y="0" width="2.5" height="12" rx="0.5" opacity="0.35"/></svg>
-          </span>
-        </div>
-        <div class="phone-screen">
-          <div class="phone-header">
-            <div class="app-name">OneAnswerAI</div>
-            <div class="app-tag">Meta-Fusion Mode</div>
-          </div>
-          <div class="phone-chat">
-            <div class="chat-q">What causes the northern lights?</div>
-            <div class="chat-a standard">
-              <div class="chat-label">Standard</div>
-              Charged particles from the sun interact with Earth's magnetosphere...
-            </div>
-            <div class="chat-a fast">
-              <div class="chat-label">Fast</div>
-              Aurora borealis occurs when solar wind excites atmospheric gases...
-            </div>
-            <div class="chat-a premium">
-              <div class="chat-label">Premium</div>
-              Solar storms eject plasma that collides with nitrogen and oxygen...
-            </div>
-            <div class="chat-a fused">
-              <div class="chat-label">Fused Answer</div>
-              The northern lights (aurora borealis) form when charged particles from solar wind enter Earth's magnetosphere and excite nitrogen and oxygen atoms in the upper atmosphere, releasing photons of colored light.
-            </div>
-          </div>
-        </div>
-        <div class="phone-home"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════════
-     HOW IT WORKS
-     ═══════════════════════════════════════════════════════ -->
-<section class="how-it-works" id="how-it-works">
-  <div class="container">
-    <h2 class="section-title reveal">How It Works</h2>
-    <p class="section-subtitle reveal">Three simple steps to a better answer.</p>
-    <div class="steps-grid reveal-children">
-      <!-- Step 1 -->
-      <div class="step glass">
-        <div class="step-num">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#007AFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-          </svg>
-        </div>
-        <h3>Ask</h3>
-        <p>Type your question once. That's all you need to do.</p>
-      </div>
-      <!-- Step 2 -->
-      <div class="step glass">
-        <div class="step-num">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#007AFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
-          </svg>
-        </div>
-        <h3>Compare</h3>
-        <p>See answers from multiple AI models side by side.</p>
-      </div>
-      <!-- Step 3 -->
-      <div class="step glass">
-        <div class="step-num">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#007AFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-          </svg>
-        </div>
-        <h3>Fuse</h3>
-        <p>Get one perfect answer via Meta-Fusion technology.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════════
-     WHY OneAnswerAI
-     ═══════════════════════════════════════════════════════ -->
-<section class="why-section" id="why">
-  <div class="container">
-    <h2 class="section-title reveal">Why OneAnswerAI</h2>
-    <p class="section-subtitle reveal">Stop switching between AI apps. Get the best of all three in one place.</p>
-    <div class="benefits-grid reveal-children">
-      <!-- Card 1 -->
-      <div class="benefit-card glass">
-        <div class="benefit-icon red">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ff3b30" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-            <path d="M9 12l2 2 4-4"/>
-          </svg>
-        </div>
-        <h3>No More Hallucinations</h3>
-        <p>Cross-referencing multiple AI models catches mistakes and fabrications that any single model might make.</p>
-      </div>
-      <!-- Card 2 -->
-      <div class="benefit-card glass">
-        <div class="benefit-icon blue">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#007AFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
-          </svg>
-        </div>
-        <h3>Save Time</h3>
-        <p>One question, three perspectives, instantly. No more opening multiple apps and tabs to compare answers.</p>
-      </div>
-      <!-- Card 3 -->
-      <div class="benefit-card glass">
-        <div class="benefit-icon green">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#30d158" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
-          </svg>
-        </div>
-        <h3>Better Answers</h3>
-        <p>Meta-Fusion takes the strongest elements from each AI and combines them into one comprehensive, accurate response.</p>
-      </div>
-      <!-- Card 4 -->
-      <div class="benefit-card glass">
-        <div class="benefit-icon purple">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#af52de" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-          </svg>
-        </div>
-        <h3>Works Everywhere</h3>
-        <p>PDF analysis, image analysis, and support for 7 languages. Use OneAnswerAI no matter the context or content.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════════
-     SUPPORTED AI MODELS
-     ═══════════════════════════════════════════════════════ -->
-<section class="models-section" id="models">
-  <div class="container">
-    <h2 class="section-title reveal">Three Quality Tiers</h2>
-    <p class="section-subtitle reveal">Powered by 5 leading AI providers, working together so you get the best of each.</p>
-    <div class="models-grid reveal-children">
-      <!-- Standard -->
-      <div class="model-card glass">
-        <div class="model-logo">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#007AFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="9"/>
-            <circle cx="12" cy="12" r="3.5"/>
-          </svg>
-        </div>
-        <h3>Standard</h3>
-        <p>Balanced quality and speed for everyday queries.</p>
-        <span class="model-tag">Default tier</span>
-      </div>
-      <!-- Fast -->
-      <div class="model-card glass">
-        <div class="model-logo">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#007AFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="9"/>
-            <circle cx="12" cy="12" r="3.5"/>
-          </svg>
-        </div>
-        <h3>Fast</h3>
-        <p>Optimized for quick responses on simple questions.</p>
-        <span class="model-tag">Speed-optimized</span>
-      </div>
-      <!-- Premium -->
-      <div class="model-card glass">
-        <div class="model-logo">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#007AFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="9"/>
-            <circle cx="12" cy="12" r="3.5"/>
-          </svg>
-        </div>
-        <h3>Premium</h3>
-        <p>Highest quality models for complex tasks.</p>
-        <span class="model-tag">Quality-optimized</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════════
-     LANGUAGES
-     ═══════════════════════════════════════════════════════ -->
-<section class="lang-section" id="languages">
-  <div class="container">
-    <h2 class="section-title reveal">Available in 7 Languages</h2>
-    <p class="section-subtitle reveal">Ask questions and receive fused answers in your preferred language.</p>
-    <div class="lang-grid reveal-children">
-      <div class="lang-chip"><span class="lang-flag">&#127468;&#127463;</span> English</div>
-      <div class="lang-chip"><span class="lang-flag">&#127470;&#127481;</span> Italiano</div>
-      <div class="lang-chip"><span class="lang-flag">&#127466;&#127480;</span> Espa&ntilde;ol</div>
-      <div class="lang-chip"><span class="lang-flag">&#127462;&#127466;</span> &#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577;</div>
-      <div class="lang-chip"><span class="lang-flag">&#127464;&#127475;</span> &#20013;&#25991;</div>
-      <div class="lang-chip"><span class="lang-flag">&#127465;&#127466;</span> Deutsch</div>
-      <div class="lang-chip"><span class="lang-flag">&#127467;&#127479;</span> Fran&ccedil;ais</div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════════
-     PRICING
-     ═══════════════════════════════════════════════════════ -->
-<section class="pricing-section" id="pricing">
-  <div class="container">
-    <h2 class="section-title reveal">Simple Pricing</h2>
-    <p class="section-subtitle reveal">Start for free. Upgrade when you need more power.</p>
-    <div class="pricing-grid reveal-children">
-      <!-- Free -->
-      <div class="pricing-card glass">
-        <div class="pricing-label">Free</div>
-        <h3>Free Plan</h3>
-        <p class="price-desc">Perfect for trying out OneAnswerAI</p>
-        <ul class="pricing-features">
-          <li>10 free queries per day</li>
-          <li>Multiple leading AI providers</li>
-          <li>Picking mode</li>
-          <li>Persistent conversations</li>
-          <li>All 7 languages</li>
-        </ul>
-        <a href="https://apps.apple.com/app/oneanswerai/id6756519049" class="btn-outline">Download Free</a>
-      </div>
-      <!-- Pro -->
-      <div class="pricing-card glass pro">
-        <div class="pricing-label">Pro</div>
-        <h3>Full Access</h3>
-        <p class="price-desc">$5.99/week or $17.99/month — for professionals and power users</p>
-        <ul class="pricing-features">
-          <li>Up to 40 queries per day</li>
-          <li>Meta-Fusion mode</li>
-          <li>PDF &amp; image analysis</li>
-          <li>Optional query packs for more</li>
-          <li>All Free features included</li>
-        </ul>
-        <a href="https://apps.apple.com/app/oneanswerai/id6756519049" class="btn-primary">Upgrade to Pro</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════════
-     SUPPORT THE DEVELOPER
-     ═══════════════════════════════════════════════════════ -->
-<section class="support-section" id="support">
-  <div class="container" style="text-align:center;">
-    <h2 class="section-title reveal">Support the Developer</h2>
-    <p class="section-subtitle reveal">OneAnswerAI is built by a solo developer. If you enjoy the app, consider buying me a coffee.</p>
-    <a href="https://paypal.me/leviathan888" target="_blank" rel="noopener noreferrer" class="btn-coffee reveal" style="transition-delay:0.1s;">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
-      Buy Me a Coffee
-    </a>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════════
-     FOOTER
-     ═══════════════════════════════════════════════════════ -->
-<footer>
-  <div class="container">
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <a href="#" class="nav-logo">One<span>Answer</span>AI</a>
-        <p>Multiple AIs. One perfect answer. The smarter way to use artificial intelligence.</p>
-        <div class="social-links">
-          <!-- Twitter/X -->
-          <a href="https://x.com/OneAnswerAI" aria-label="Twitter">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-          </a>
-          <!-- TikTok -->
-          <a href="https://www.tiktok.com/@oneanswer_ai" aria-label="TikTok">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 0 0-.79-.05A6.34 6.34 0 0 0 3.15 15a6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.71a8.21 8.21 0 0 0 4.76 1.52v-3.4a4.85 4.85 0 0 1-1-.14z"/></svg>
-          </a>
-          <!-- Instagram -->
-          <a href="https://www.instagram.com/oneanswer_ai/" aria-label="Instagram">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
-          </a>
-          <!-- Reddit -->
-          <a href="https://www.reddit.com/user/OneAnswerAI/" aria-label="Reddit">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg>
-          </a>
-        </div>
-      </div>
-      <div class="footer-links">
-        <div class="footer-col">
-          <h4>Product</h4>
-          <a href="#how-it-works">How It Works</a>
-          <a href="#models">AI Models</a>
-          <a href="#pricing">Pricing</a>
-          <a href="#languages">Languages</a>
-        </div>
-        <div class="footer-col">
-          <h4>Blog</h4>
-          <a href="blog/index.html">All Posts</a>
-          <a href="blog/why-one-ai-is-not-enough.html">Why One AI Isn't Enough</a>
-          <a href="blog/ai-hallucinations-solution.html">AI Hallucinations</a>
-          <a href="blog/best-ai-app-students.html">Best AI for Students</a>
-        </div>
-        <div class="footer-col">
-          <h4>Legal</h4>
-          <a href="https://m8seven.github.io/oneanswerai-privacy/">Privacy Policy</a>
-          <a href="https://m8seven.github.io/oneanswerai-privacy/terms.html">Terms of Service</a>
-        </div>
-        <div class="footer-col">
-          <h4>Support</h4>
-          <a href="mailto:oneanswerai@icloud.com">Contact Us</a>
-          <a href="https://m8seven.github.io/oneanswerai-privacy/support.html">FAQ</a>
-        </div>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      &copy; 2026 OneAnswerAI. All rights reserved.
-    </div>
-  </div>
-</footer>
-
-<!-- ═══════════════════════════════════════════════════════
-     JAVASCRIPT
-     ═══════════════════════════════════════════════════════ -->
-<script>
+<!DOCTYPE html><html lang="en" dir="ltr"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>OneAnswerAI — Three AIs. One Answer.</title><meta name="description" content="Ask once. OpenAI, Google Gemini, and Anthropic Claude answer simultaneously. OneAnswerAI fuses them into one verified response."><link rel="alternate" hreflang="en" href="https://one-answer-ai.com/"><link rel="alternate" hreflang="it" href="https://one-answer-ai.com/it"><link rel="alternate" hreflang="es" href="https://one-answer-ai.com/es"><link rel="alternate" hreflang="fr" href="https://one-answer-ai.com/fr"><link rel="alternate" hreflang="de" href="https://one-answer-ai.com/de"><link rel="alternate" hreflang="ar" href="https://one-answer-ai.com/ar"><link rel="alternate" hreflang="zh-Hans" href="https://one-answer-ai.com/zh"><link rel="alternate" hreflang="x-default" href="https://one-answer-ai.com/"><meta name="theme-color" content="#000000"><meta property="og:type" content="website"><meta property="og:site_name" content="OneAnswerAI"><meta property="og:title" content="OneAnswerAI — Three AIs. One Answer."><meta property="og:description" content="Ask once. OpenAI, Google Gemini, and Anthropic Claude answer simultaneously. OneAnswerAI fuses them into one verified response."><meta property="og:url" content="https://one-answer-ai.com"><meta property="og:image" content="https://one-answer-ai.com/og-image.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://one-answer-ai.com/og-image.png"><!-- GSAP + ScrollTrigger + Lenis via CDN --><script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script><script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script><link rel="stylesheet" href="/_astro/Body.Dz9XOQYy.css"></head> <body> <!-- Global UI: cursor glow + scroll progress --> <div id="cursor-glow" aria-hidden="true"></div> <div id="scroll-progress" aria-hidden="true"></div>  <nav id="nav" data-astro-cid-dmqpwcec> <div class="container nav-inner" data-astro-cid-dmqpwcec> <a href="/" class="nav-brand" data-astro-cid-dmqpwcec>One<em data-astro-cid-dmqpwcec>Answer</em>AI</a> <ul class="nav-links" id="navLinks" data-astro-cid-dmqpwcec> <li data-astro-cid-dmqpwcec><a href="#how" data-astro-cid-dmqpwcec>How it works</a></li> <li data-astro-cid-dmqpwcec><a href="#families" data-astro-cid-dmqpwcec>AI Families</a></li> <li data-astro-cid-dmqpwcec><a href="#pricing" data-astro-cid-dmqpwcec>Pricing</a></li> <li class="nav-lang" data-astro-cid-dmqpwcec> <button class="nav-lang-btn" id="navLangBtn" aria-haspopup="true" aria-expanded="false" aria-label="Language" data-astro-cid-dmqpwcec> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" data-astro-cid-dmqpwcec><circle cx="12" cy="12" r="10" data-astro-cid-dmqpwcec></circle><path d="M2 12h20M12 2a15.3 15.3 0 0 1 0 20M12 2a15.3 15.3 0 0 0 0 20" data-astro-cid-dmqpwcec></path></svg> <span data-astro-cid-dmqpwcec>English</span> </button> <ul class="nav-lang-menu" id="navLangMenu" data-astro-cid-dmqpwcec> <li data-astro-cid-dmqpwcec> <a href="/" class="is-active" lang="en" hreflang="en" data-astro-cid-dmqpwcec> English </a> </li><li data-astro-cid-dmqpwcec> <a href="/it" class lang="it" hreflang="it" data-astro-cid-dmqpwcec> Italiano </a> </li><li data-astro-cid-dmqpwcec> <a href="/es" class lang="es" hreflang="es" data-astro-cid-dmqpwcec> Español </a> </li><li data-astro-cid-dmqpwcec> <a href="/fr" class lang="fr" hreflang="fr" data-astro-cid-dmqpwcec> Français </a> </li><li data-astro-cid-dmqpwcec> <a href="/de" class lang="de" hreflang="de" data-astro-cid-dmqpwcec> Deutsch </a> </li><li data-astro-cid-dmqpwcec> <a href="/ar" class lang="ar" hreflang="ar" data-astro-cid-dmqpwcec> العربية </a> </li><li data-astro-cid-dmqpwcec> <a href="/zh" class lang="zh" hreflang="zh" data-astro-cid-dmqpwcec> 中文 </a> </li> </ul> </li> <li data-astro-cid-dmqpwcec> <a href="https://apps.apple.com/app/oneanswerai/id6756519049" class="nav-cta" data-astro-cid-dmqpwcec> Download </a> </li> </ul> <button class="nav-burger" id="navBurger" aria-label="Menu" data-astro-cid-dmqpwcec> <span data-astro-cid-dmqpwcec></span><span data-astro-cid-dmqpwcec></span> </button> </div> </nav>  <script>
 (function () {
-  'use strict';
-
-  /* ── Intersection Observer: fade-in on scroll ──────── */
-  const observerOptions = {
-    threshold: 0.12,
-    rootMargin: '0px 0px -40px 0px'
-  };
-
-  const observer = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, observerOptions);
-
-  document.querySelectorAll('.reveal, .reveal-children').forEach(function (el) {
-    observer.observe(el);
-  });
-
-  /* ── Navbar scroll effect ──────────────────────────── */
-  var nav = document.getElementById('mainNav');
-  var lastScroll = 0;
-
+  var nav = document.getElementById('nav');
   window.addEventListener('scroll', function () {
-    var scrollY = window.pageYOffset;
-    if (scrollY > 40) {
-      nav.classList.add('scrolled');
-    } else {
-      nav.classList.remove('scrolled');
-    }
-    lastScroll = scrollY;
+    nav.classList.toggle('scrolled', window.scrollY > 40);
   }, { passive: true });
-
-  /* ── Mobile nav toggle ─────────────────────────────── */
-  var navToggle = document.getElementById('navToggle');
-  var navLinks = document.getElementById('navLinks');
-
-  navToggle.addEventListener('click', function () {
-    navLinks.classList.toggle('open');
+  var burger = document.getElementById('navBurger');
+  var links = document.getElementById('navLinks');
+  burger.addEventListener('click', function () {
+    links.classList.toggle('open');
+  });
+  links.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () { links.classList.remove('open'); });
   });
 
-  window.closeNav = function () {
-    navLinks.classList.remove('open');
-  };
-
-  /* ── Smooth scroll for anchor links ────────────────── */
-  document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
-    anchor.addEventListener('click', function (e) {
-      var href = this.getAttribute('href');
-      if (href === '#') return;
-      e.preventDefault();
-      var target = document.querySelector(href);
-      if (target) {
-        var offset = nav.offsetHeight + 16;
-        var top = target.getBoundingClientRect().top + window.pageYOffset - offset;
-        window.scrollTo({ top: top, behavior: 'smooth' });
+  /* Language dropdown */
+  var langBtn = document.getElementById('navLangBtn');
+  var langMenu = document.getElementById('navLangMenu');
+  if (langBtn && langMenu) {
+    langBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var open = langMenu.classList.toggle('open');
+      langBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    document.addEventListener('click', function (e) {
+      if (!langMenu.contains(e.target) && e.target !== langBtn) {
+        langMenu.classList.remove('open');
+        langBtn.setAttribute('aria-expanded', 'false');
       }
+    });
+  }
+})();
+</script> <section id="hero" data-astro-cid-bbe6dxrz> <div class="container hero-grid" data-astro-cid-bbe6dxrz> <!-- LEFT: editorial text block --> <div class="hero-text" data-astro-cid-bbe6dxrz> <span class="eyebrow" data-astro-cid-bbe6dxrz>Multi-provider AI — iOS &amp; Android</span> <h1 class="hero-h1" data-astro-cid-bbe6dxrz>  <span class="h1-word" data-word data-astro-cid-bbe6dxrz>Three</span>  <span class="h1-word" data-word data-astro-cid-bbe6dxrz>AIs.</span><br class="h1-br" data-astro-cid-bbe6dxrz> <span class="h1-word" data-word data-astro-cid-bbe6dxrz>One</span>  <span class="h1-word" data-word data-astro-cid-bbe6dxrz>Answer.</span>  </h1> <p class="hero-copy" data-astro-cid-bbe6dxrz>You’ve been asking one AI at a time. That’s leaving two answers on the table. OneAnswerAI asks OpenAI, Gemini, and Claude simultaneously — then fuses their answers into one verified response, or lets you pick the best. One app. All three. No switching.</p> <a href="https://apps.apple.com/app/oneanswerai/id6756519049" class="btn-primary btn-magnetic" id="heroCta" data-astro-cid-bbe6dxrz> <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-astro-cid-bbe6dxrz> <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" data-astro-cid-bbe6dxrz></path> </svg> Download on App Store </a> <div class="hero-badges" data-astro-cid-bbe6dxrz> <span class="badge" data-astro-cid-bbe6dxrz>Picking Mode</span><span class="badge" data-astro-cid-bbe6dxrz>Meta-Fusion</span><span class="badge" data-astro-cid-bbe6dxrz>PDF &amp; Images</span><span class="badge" data-astro-cid-bbe6dxrz>7 Languages</span> </div> </div> <!-- RIGHT: live query indicator --> <div class="hero-indicator" id="heroIndicator" data-done="Done" data-astro-cid-bbe6dxrz> <div class="indicator-query" data-astro-cid-bbe6dxrz> <span class="query-prompt" data-astro-cid-bbe6dxrz>Your question</span> <span class="query-text" id="queryText" data-query="What causes climate change?" data-astro-cid-bbe6dxrz></span><span class="query-cursor" aria-hidden="true" data-astro-cid-bbe6dxrz>|</span> </div> <div class="indicator-label" data-astro-cid-bbe6dxrz>Routing to three families…</div> <div class="indicator-rows" data-astro-cid-bbe6dxrz> <div class="indicator-row" id="ind0" data-astro-cid-bbe6dxrz> <div class="ind-dot" data-astro-cid-bbe6dxrz></div> <div class="ind-info" data-astro-cid-bbe6dxrz> <span class="ind-name" data-astro-cid-bbe6dxrz>OpenAI</span> <span class="ind-status" id="s0" data-astro-cid-bbe6dxrz>Processing…</span> </div> <div class="ind-bar" data-astro-cid-bbe6dxrz><div class="ind-fill" data-astro-cid-bbe6dxrz></div></div> </div> <div class="indicator-row" id="ind1" data-astro-cid-bbe6dxrz> <div class="ind-dot" data-astro-cid-bbe6dxrz></div> <div class="ind-info" data-astro-cid-bbe6dxrz> <span class="ind-name" data-astro-cid-bbe6dxrz>Google Gemini</span> <span class="ind-status" id="s1" data-astro-cid-bbe6dxrz>Processing…</span> </div> <div class="ind-bar" data-astro-cid-bbe6dxrz><div class="ind-fill" data-astro-cid-bbe6dxrz></div></div> </div> <div class="indicator-row" id="ind2" data-astro-cid-bbe6dxrz> <div class="ind-dot" data-astro-cid-bbe6dxrz></div> <div class="ind-info" data-astro-cid-bbe6dxrz> <span class="ind-name" data-astro-cid-bbe6dxrz>Anthropic Claude</span> <span class="ind-status" id="s2" data-astro-cid-bbe6dxrz>Processing…</span> </div> <div class="ind-bar" data-astro-cid-bbe6dxrz><div class="ind-fill" data-astro-cid-bbe6dxrz></div></div> </div> </div> <div class="indicator-fused" id="indFused" data-astro-cid-bbe6dxrz> <div class="fused-label" data-astro-cid-bbe6dxrz>Meta-Fusion</div> <div class="fused-text" data-astro-cid-bbe6dxrz>One verified answer ready</div> </div> </div> <!-- Scroll hint --> <div class="hero-scroll-hint" id="heroScrollHint" aria-hidden="true" data-astro-cid-bbe6dxrz> <span data-astro-cid-bbe6dxrz>scroll</span> <div class="scroll-line" data-astro-cid-bbe6dxrz></div> </div> </div></section> <div class="marquee-wrap" aria-hidden="true" data-astro-cid-tpudeaz7> <div class="marquee-track" data-astro-cid-tpudeaz7> <span data-astro-cid-tpudeaz7>OpenAI</span><span class="dot" data-astro-cid-tpudeaz7>&middot;</span> <span data-astro-cid-tpudeaz7>Google Gemini</span><span class="dot" data-astro-cid-tpudeaz7>&middot;</span> <span data-astro-cid-tpudeaz7>Anthropic Claude</span><span class="dot" data-astro-cid-tpudeaz7>&middot;</span> <span data-astro-cid-tpudeaz7>Meta-Fusion</span><span class="dot" data-astro-cid-tpudeaz7>&middot;</span> <span data-astro-cid-tpudeaz7>OpenAI</span><span class="dot" data-astro-cid-tpudeaz7>&middot;</span> <span data-astro-cid-tpudeaz7>Google Gemini</span><span class="dot" data-astro-cid-tpudeaz7>&middot;</span> <span data-astro-cid-tpudeaz7>Anthropic Claude</span><span class="dot" data-astro-cid-tpudeaz7>&middot;</span> <span data-astro-cid-tpudeaz7>Meta-Fusion</span><span class="dot" data-astro-cid-tpudeaz7>&middot;</span> <span data-astro-cid-tpudeaz7>OpenAI</span><span class="dot" data-astro-cid-tpudeaz7>&middot;</span> <span data-astro-cid-tpudeaz7>Google Gemini</span><span class="dot" data-astro-cid-tpudeaz7>&middot;</span> <span data-astro-cid-tpudeaz7>Anthropic Claude</span><span class="dot" data-astro-cid-tpudeaz7>&middot;</span> <span data-astro-cid-tpudeaz7>Meta-Fusion</span><span class="dot" data-astro-cid-tpudeaz7>&middot;</span> </div> </div> <section id="how" class="section-how" data-astro-cid-cmgpsf2k> <div class="container" data-astro-cid-cmgpsf2k> <div class="how-header" data-astro-cid-cmgpsf2k> <span class="section-num" data-astro-cid-cmgpsf2k>How it works</span> <hr class="hr how-rule" data-astro-cid-cmgpsf2k> </div> <div class="how-modes" data-astro-cid-cmgpsf2k> <div class="how-mode" data-how="picking" data-astro-cid-cmgpsf2k> <div class="how-mode-num" data-astro-cid-cmgpsf2k>A</div> <h2 class="how-mode-title" data-astro-cid-cmgpsf2k>Picking Mode</h2> <p class="how-mode-desc" data-astro-cid-cmgpsf2k>See the raw answer from each AI family side by side. Read all three, decide which one resonates, copy it. You stay in control.</p> <ol class="how-steps" data-astro-cid-cmgpsf2k> <li class="how-step" data-astro-cid-cmgpsf2k> <span class="step-n" data-astro-cid-cmgpsf2k>01</span> <div data-astro-cid-cmgpsf2k> <strong data-astro-cid-cmgpsf2k>Ask once</strong> <p data-astro-cid-cmgpsf2k>Type your question. It routes to OpenAI, Gemini, and Claude at the same time.</p> </div> </li><li class="how-step" data-astro-cid-cmgpsf2k> <span class="step-n" data-astro-cid-cmgpsf2k>02</span> <div data-astro-cid-cmgpsf2k> <strong data-astro-cid-cmgpsf2k>Read three answers</strong> <p data-astro-cid-cmgpsf2k>Each AI family responds independently in parallel. No waiting for one to finish before starting the next.</p> </div> </li><li class="how-step" data-astro-cid-cmgpsf2k> <span class="step-n" data-astro-cid-cmgpsf2k>03</span> <div data-astro-cid-cmgpsf2k> <strong data-astro-cid-cmgpsf2k>Pick the best</strong> <p data-astro-cid-cmgpsf2k>Tap the answer you trust most. Save it, copy it, continue the conversation with that AI.</p> </div> </li> </ol> </div><div class="how-mode" data-how="fusion" data-astro-cid-cmgpsf2k> <div class="how-mode-num" data-astro-cid-cmgpsf2k>B</div> <h2 class="how-mode-title" data-astro-cid-cmgpsf2k>Meta-Fusion</h2> <p class="how-mode-desc" data-astro-cid-cmgpsf2k>Let the engine synthesize. We take the strongest elements from each answer and fuse them into a single, comprehensive response. Less reading, more doing.</p> <ol class="how-steps" data-astro-cid-cmgpsf2k> <li class="how-step" data-astro-cid-cmgpsf2k> <span class="step-n" data-astro-cid-cmgpsf2k>01</span> <div data-astro-cid-cmgpsf2k> <strong data-astro-cid-cmgpsf2k>Ask once</strong> <p data-astro-cid-cmgpsf2k>Same question, same flow. All three AI families get it simultaneously.</p> </div> </li><li class="how-step" data-astro-cid-cmgpsf2k> <span class="step-n" data-astro-cid-cmgpsf2k>02</span> <div data-astro-cid-cmgpsf2k> <strong data-astro-cid-cmgpsf2k>Cross-check</strong> <p data-astro-cid-cmgpsf2k>Our CPFM layer compares the three responses, identifies agreements and contradictions.</p> </div> </li><li class="how-step" data-astro-cid-cmgpsf2k> <span class="step-n" data-astro-cid-cmgpsf2k>03</span> <div data-astro-cid-cmgpsf2k> <strong data-astro-cid-cmgpsf2k>One fused answer</strong> <p data-astro-cid-cmgpsf2k>The best parts of each answer, blended into one. Hallucinations that only one AI made get filtered out.</p> </div> </li> </ol> </div> </div> </div> </section> <section id="showcase" class="section-showcase" data-astro-cid-xyg7ob6d> <div class="container" data-astro-cid-xyg7ob6d> <div class="sc-header" data-astro-cid-xyg7ob6d> <span class="section-num" data-astro-cid-xyg7ob6d>In the app</span> <hr class="hr sc-rule" data-astro-cid-xyg7ob6d> </div> <div class="sc-intro" data-astro-cid-xyg7ob6d> <h2 class="sc-section-title" data-astro-cid-xyg7ob6d>What using it actually looks like.</h2> </div> <div class="sc-rows" data-astro-cid-xyg7ob6d> <div class="sc-row" data-show-row data-astro-cid-xyg7ob6d> <div class="sc-device-wrap" data-astro-cid-xyg7ob6d> <div class="sc-phone" data-astro-cid-xyg7ob6d> <div class="sc-screen" data-astro-cid-xyg7ob6d> <div class="sc-placeholder" aria-hidden="true" data-astro-cid-xyg7ob6d> <span class="sc-placeholder-label" data-astro-cid-xyg7ob6d>chat</span> </div> <img src="/screens/chat.png" alt="Chat screen — ask once, get one fused answer" loading="lazy" class="sc-img" onerror="this.style.display='none'" data-astro-cid-xyg7ob6d> </div> </div> </div> <div class="sc-copy" data-astro-cid-xyg7ob6d> <span class="eyebrow" data-astro-cid-xyg7ob6d>THE ANSWER</span> <h3 class="sc-headline" data-astro-cid-xyg7ob6d>Ask once. Read one answer.</h3> <p class="sc-body" data-astro-cid-xyg7ob6d>Your question hits all three models at the same time. You read one fused result — not three tabs you have to reconcile yourself.</p> </div> </div><div class="sc-row sc-row--flip" data-show-row data-astro-cid-xyg7ob6d> <div class="sc-device-wrap" data-astro-cid-xyg7ob6d> <div class="sc-phone" data-astro-cid-xyg7ob6d> <div class="sc-screen" data-astro-cid-xyg7ob6d> <div class="sc-placeholder" aria-hidden="true" data-astro-cid-xyg7ob6d> <span class="sc-placeholder-label" data-astro-cid-xyg7ob6d>home</span> </div> <img src="/screens/home.png" alt="Home screen — minimal, nothing in the way" loading="lazy" class="sc-img" onerror="this.style.display='none'" data-astro-cid-xyg7ob6d> </div> </div> </div> <div class="sc-copy" data-astro-cid-xyg7ob6d> <span class="eyebrow" data-astro-cid-xyg7ob6d>THE FEEL</span> <h3 class="sc-headline" data-astro-cid-xyg7ob6d>Nothing in the way.</h3> <p class="sc-body" data-astro-cid-xyg7ob6d>Open it, ask, done. No model picker, no settings maze. The interface gets out of the way so the answer is the only thing on screen.</p> </div> </div><div class="sc-row" data-show-row data-astro-cid-xyg7ob6d> <div class="sc-device-wrap" data-astro-cid-xyg7ob6d> <div class="sc-phone" data-astro-cid-xyg7ob6d> <div class="sc-screen" data-astro-cid-xyg7ob6d> <div class="sc-placeholder" aria-hidden="true" data-astro-cid-xyg7ob6d> <span class="sc-placeholder-label" data-astro-cid-xyg7ob6d>image</span> </div> <img src="/screens/image.png" alt="Image editing screen — edit photos by asking" loading="lazy" class="sc-img" onerror="this.style.display='none'" data-astro-cid-xyg7ob6d> </div> </div> </div> <div class="sc-copy" data-astro-cid-xyg7ob6d> <span class="eyebrow" data-astro-cid-xyg7ob6d>IMAGES</span> <h3 class="sc-headline" data-astro-cid-xyg7ob6d>Edit images by asking.</h3> <p class="sc-body" data-astro-cid-xyg7ob6d>Send a photo, describe the change in plain words, get it back. No layers, no brushes, no tools to learn.</p> </div> </div><div class="sc-row sc-row--flip" data-show-row data-astro-cid-xyg7ob6d> <div class="sc-device-wrap" data-astro-cid-xyg7ob6d> <div class="sc-phone" data-astro-cid-xyg7ob6d> <div class="sc-screen" data-astro-cid-xyg7ob6d> <div class="sc-placeholder" aria-hidden="true" data-astro-cid-xyg7ob6d> <span class="sc-placeholder-label" data-astro-cid-xyg7ob6d>insights</span> </div> <img src="/screens/insights.png" alt="Insights screen — your usage over time" loading="lazy" class="sc-img" onerror="this.style.display='none'" data-astro-cid-xyg7ob6d> </div> </div> </div> <div class="sc-copy" data-astro-cid-xyg7ob6d> <span class="eyebrow" data-astro-cid-xyg7ob6d>YOUR USAGE</span> <h3 class="sc-headline" data-astro-cid-xyg7ob6d>See what you actually asked.</h3> <p class="sc-body" data-astro-cid-xyg7ob6d>A simple view of your activity and topics over time, so the app stays useful instead of mysterious.</p> </div> </div> </div> </div> </section> <section id="anti-hallucination" class="section-anti" data-astro-cid-fvlrnjxq> <div class="container" data-astro-cid-fvlrnjxq> <div class="anti-header" data-astro-cid-fvlrnjxq> <span class="section-num" data-astro-cid-fvlrnjxq>Anti-hallucination</span> <hr class="hr anti-rule" data-astro-cid-fvlrnjxq> </div> <div class="anti-grid" data-astro-cid-fvlrnjxq> <div class="anti-left" data-astro-cid-fvlrnjxq> <h2 class="anti-headline" id="antiHeadline" data-astro-cid-fvlrnjxq> <span class="ah-line" data-astro-cid-fvlrnjxq>When one AI</span><span class="ah-line" data-astro-cid-fvlrnjxq>guesses,</span><span class="ah-line ah-accent" data-astro-cid-fvlrnjxq>the other two</span><span class="ah-line ah-accent" data-astro-cid-fvlrnjxq>know.</span> </h2> </div> <div class="anti-right" data-astro-cid-fvlrnjxq> <p class="anti-intro" data-astro-cid-fvlrnjxq>Every AI makes stuff up sometimes. It’s not a bug — it’s a fundamental property of how language models work. The problem is they don’t tell you when they’re guessing.</p> <div class="cpfm-box" data-astro-cid-fvlrnjxq> <span class="eyebrow" data-astro-cid-fvlrnjxq>CPFM — Cross-Provider Fact Mesh</span> <p data-astro-cid-fvlrnjxq>When three independent AI families agree on a fact, confidence is high. When they disagree, you see the conflict — and in Meta-Fusion mode, the engine flags the contested part instead of silently picking one.</p> <p data-astro-cid-fvlrnjxq>OneAnswerAI doesn’t eliminate hallucinations. It makes them visible and uses consensus to minimize them.</p> </div> <div class="anti-stat-row" data-astro-cid-fvlrnjxq> <div class="anti-stat" data-astro-cid-fvlrnjxq> <span class="stat-num" data-astro-cid-fvlrnjxq>3×</span> <span class="stat-label" data-astro-cid-fvlrnjxq>independent sources per answer</span> </div><div class="anti-stat" data-astro-cid-fvlrnjxq> <span class="stat-num" data-astro-cid-fvlrnjxq>0</span> <span class="stat-label" data-astro-cid-fvlrnjxq>single point of failure</span> </div><div class="anti-stat" data-astro-cid-fvlrnjxq> <span class="stat-num" data-astro-cid-fvlrnjxq>7</span> <span class="stat-label" data-astro-cid-fvlrnjxq>languages, all cross-checked</span> </div> </div> </div> </div> </div> </section> <section id="families" class="section-families" data-astro-cid-jr27z45k> <div class="container" data-astro-cid-jr27z45k> <div class="fam-header" data-astro-cid-jr27z45k> <span class="section-num" data-astro-cid-jr27z45k>The three families</span> <hr class="hr fam-rule" data-astro-cid-jr27z45k> </div> <p class="fam-intro" data-astro-cid-jr27z45k>We don’t route to a specific model — we route to a family. As each provider releases better models, you get better answers automatically.</p> <div class="fam-grid" data-astro-cid-jr27z45k> <div class="fam-card fam-card--featured" data-fam="0" data-astro-cid-jr27z45k> <div class="fam-top" data-astro-cid-jr27z45k> <span class="fam-tag" data-astro-cid-jr27z45k>Standard tier</span> <div class="fam-logo fam-logo--openai" data-astro-cid-jr27z45k>GPT</div> </div> <h3 class="fam-name" data-astro-cid-jr27z45k>OpenAI</h3> <p class="fam-char" data-astro-cid-jr27z45k>Versatile. Reliable. The workhorse.</p> <p class="fam-desc" data-astro-cid-jr27z45k>The most widely used AI family. Strong on reasoning, code, and structured tasks. Our Standard tier routes here by default.</p> </div><div class="fam-card" data-fam="1" data-astro-cid-jr27z45k> <div class="fam-top" data-astro-cid-jr27z45k> <span class="fam-tag" data-astro-cid-jr27z45k>Fast tier</span> <div class="fam-logo fam-logo--gemini" data-astro-cid-jr27z45k>G</div> </div> <h3 class="fam-name" data-astro-cid-jr27z45k>Google Gemini</h3> <p class="fam-char" data-astro-cid-jr27z45k>Current. Multimodal. Connected.</p> <p class="fam-desc" data-astro-cid-jr27z45k>Optimized for speed and recency. Strong on factual lookups, current events, and image analysis.</p> </div><div class="fam-card" data-fam="2" data-astro-cid-jr27z45k> <div class="fam-top" data-astro-cid-jr27z45k> <span class="fam-tag" data-astro-cid-jr27z45k>Premium tier</span> <div class="fam-logo fam-logo--claude" data-astro-cid-jr27z45k>C</div> </div> <h3 class="fam-name" data-astro-cid-jr27z45k>Anthropic Claude</h3> <p class="fam-char" data-astro-cid-jr27z45k>Thoughtful. Safe. Precise.</p> <p class="fam-desc" data-astro-cid-jr27z45k>Built with safety and nuance in mind. Exceptional at long documents, careful reasoning, and tasks that need more deliberate thinking.</p> </div> </div> <p class="fam-footnote" data-astro-cid-jr27z45k>All three answer in parallel. You never wait for one to finish before another starts.</p> </div> </section> <section id="pricing" class="section-pricing" data-astro-cid-hkoc4sea> <div class="container" data-astro-cid-hkoc4sea> <div class="pricing-header" data-astro-cid-hkoc4sea> <span class="section-num" data-astro-cid-hkoc4sea>Pricing</span> <hr class="hr pricing-rule" data-astro-cid-hkoc4sea> </div> <h2 class="pricing-title" data-astro-cid-hkoc4sea>Start free.<br data-astro-cid-hkoc4sea>Go further with Pro.</h2> <div class="pricing-grid" data-astro-cid-hkoc4sea> <div class="pricing-card" data-price="0" data-astro-cid-hkoc4sea> <div class="price-tier" data-astro-cid-hkoc4sea>Free</div> <div class="price-amount" data-astro-cid-hkoc4sea>$0</div> <p class="price-desc" data-astro-cid-hkoc4sea>Try it today, no credit card required.</p> <ul class="price-features" data-astro-cid-hkoc4sea> <li data-astro-cid-hkoc4sea>10 queries per day</li><li data-astro-cid-hkoc4sea>Picking Mode — compare three AIs</li><li data-astro-cid-hkoc4sea>All 7 languages</li><li data-astro-cid-hkoc4sea>Persistent conversations</li><li data-astro-cid-hkoc4sea>PDF &amp; image analysis (limited)</li> </ul> <a href="https://apps.apple.com/app/oneanswerai/id6756519049" class="btn-outline" data-astro-cid-hkoc4sea> Download free </a> </div> <div class="pricing-card pricing-card--pro" data-price="1" data-astro-cid-hkoc4sea> <div class="price-tier" data-astro-cid-hkoc4sea>Pro</div> <div class="price-amount" data-astro-cid-hkoc4sea>$5.99<span class="price-period" data-astro-cid-hkoc4sea>/week</span></div> <div class="price-alt" data-astro-cid-hkoc4sea>or $17.99/month</div> <p class="price-desc" data-astro-cid-hkoc4sea>More queries, Meta-Fusion, full PDF and image support.</p> <ul class="price-features" data-astro-cid-hkoc4sea> <li data-astro-cid-hkoc4sea>Up to 40 queries per day</li><li data-astro-cid-hkoc4sea>Meta-Fusion mode</li><li data-astro-cid-hkoc4sea>PDF &amp; image analysis (full)</li><li data-astro-cid-hkoc4sea>Optional query packs for more</li><li data-astro-cid-hkoc4sea>Everything in Free</li> </ul> <a href="https://apps.apple.com/app/oneanswerai/id6756519049" class="btn-primary btn-magnetic" data-astro-cid-hkoc4sea> Upgrade to Pro </a> </div> </div> </div> </section> <footer class="footer" data-astro-cid-sz7xmlte> <div class="container footer-inner" data-astro-cid-sz7xmlte> <div class="footer-brand" data-astro-cid-sz7xmlte> <a href="/" class="footer-logo" data-astro-cid-sz7xmlte>One<em data-astro-cid-sz7xmlte>Answer</em>AI</a> <p class="footer-tagline" data-astro-cid-sz7xmlte>Three AIs. One Answer. Built by a solo developer.</p> <div class="footer-social" data-astro-cid-sz7xmlte> <a href="https://x.com/OneAnswerAI" aria-label="X (Twitter)" rel="noopener" data-astro-cid-sz7xmlte> <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" data-astro-cid-sz7xmlte> <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" data-astro-cid-sz7xmlte></path> </svg> </a> <a href="https://www.instagram.com/oneanswer_ai/" aria-label="Instagram" rel="noopener" data-astro-cid-sz7xmlte> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-sz7xmlte> <rect x="2" y="2" width="20" height="20" rx="5" data-astro-cid-sz7xmlte></rect><circle cx="12" cy="12" r="5" data-astro-cid-sz7xmlte></circle> <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" data-astro-cid-sz7xmlte></circle> </svg> </a> <a href="https://www.tiktok.com/@oneanswer_ai" aria-label="TikTok" rel="noopener" data-astro-cid-sz7xmlte> <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" data-astro-cid-sz7xmlte> <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 0 0-.79-.05A6.34 6.34 0 0 0 3.15 15a6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.71a8.21 8.21 0 0 0 4.76 1.52v-3.4a4.85 4.85 0 0 1-1-.14z" data-astro-cid-sz7xmlte></path> </svg> </a> </div> </div> <div class="footer-cols" data-astro-cid-sz7xmlte> <div class="footer-col" data-astro-cid-sz7xmlte> <h4 data-astro-cid-sz7xmlte>Product</h4> <a href="#how" data-astro-cid-sz7xmlte>How it works</a> <a href="#families" data-astro-cid-sz7xmlte>AI Families</a> <a href="#pricing" data-astro-cid-sz7xmlte>Pricing</a> </div> <div class="footer-col" data-astro-cid-sz7xmlte> <h4 data-astro-cid-sz7xmlte>Legal</h4> <a href="https://m8seven.github.io/oneanswerai-privacy/" rel="noopener" data-astro-cid-sz7xmlte>Privacy Policy</a> <a href="https://m8seven.github.io/oneanswerai-privacy/terms.html" rel="noopener" data-astro-cid-sz7xmlte>Terms of Service</a> </div> <div class="footer-col" data-astro-cid-sz7xmlte> <h4 data-astro-cid-sz7xmlte>Support</h4> <a href="mailto:oneanswerai@icloud.com" data-astro-cid-sz7xmlte>Contact</a> <a href="https://m8seven.github.io/oneanswerai-privacy/support.html" rel="noopener" data-astro-cid-sz7xmlte>FAQ</a> </div> </div> </div> <div class="container footer-bottom" data-astro-cid-sz7xmlte> <span data-astro-cid-sz7xmlte>© 2026 OneAnswerAI. All rights reserved.</span> <a href="https://apps.apple.com/app/oneanswerai/id6756519049" rel="noopener" data-astro-cid-sz7xmlte>Download on App Store</a> </div> </footer> <script>
+(function () {
+  var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ── Lenis + ScrollTrigger integration ─────────────────── */
+  var lenis = new Lenis({ duration: prefersReducedMotion ? 0 : 1.2, easing: function(t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); } });
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add(function (time) { lenis.raf(time * 1000); });
+  gsap.ticker.lagSmoothing(0);
+
+  /* ── Scroll progress bar ────────────────────────────────── */
+  var progressBar = document.getElementById('scroll-progress');
+  lenis.on('scroll', function (e) {
+    progressBar.style.width = (e.progress * 100) + '%';
+  });
+
+  /* ── Cursor glow ───────────────────────────────────────── */
+  if (!prefersReducedMotion) {
+    var glow = document.getElementById('cursor-glow');
+    document.addEventListener('mousemove', function (e) {
+      gsap.to(glow, { x: e.clientX, y: e.clientY, duration: 0.9, ease: 'power2.out', opacity: 1 });
+    }, { passive: true });
+    document.addEventListener('mouseleave', function () {
+      gsap.to(glow, { opacity: 0, duration: 0.4 });
+    });
+  }
+
+  /* ── Set initial states ─────────────────────────────────── */
+  var famCards = document.querySelectorAll('[data-fam]');
+  famCards.forEach(function (card, i) {
+    gsap.set(card, { opacity: 0, x: i === 0 ? -40 : i === 2 ? 40 : 0 });
+  });
+
+  /* ── Hero: word clip-path reveal on load ─────────────── */
+  var words = document.querySelectorAll('[data-word]');
+  if (!prefersReducedMotion) {
+    gsap.set(words, { clipPath: 'inset(0 100% 0 0)' });
+    gsap.to(words, {
+      clipPath: 'inset(0 0% 0 0)',
+      duration: 0.9,
+      stagger: 0.12,
+      ease: 'power3.out',
+      delay: 0.3
+    });
+  } else {
+    gsap.set(words, { opacity: 1 });
+  }
+
+  /* Hero copy + CTA + badges */
+  gsap.from('.hero-copy', { opacity: 0, y: prefersReducedMotion ? 0 : 20, duration: 0.8, delay: 0.9, ease: 'power2.out' });
+  gsap.from('#heroCta', { opacity: 0, y: prefersReducedMotion ? 0 : 16, duration: 0.7, delay: 1.1, ease: 'power2.out' });
+  gsap.from('.hero-badges .badge', {
+    opacity: 0, y: prefersReducedMotion ? 0 : 10, stagger: 0.08, duration: 0.5, delay: 1.2, ease: 'power2.out'
+  });
+
+  /* Hero indicator panel */
+  gsap.to('.hero-indicator', { opacity: 1, y: 0, duration: 0.6, delay: 0.8, ease: 'power2.out' });
+
+  /* Hero scroll hint */
+  gsap.to('#heroScrollHint', { opacity: 1, duration: 0.8, delay: 2.0, ease: 'power2.out' });
+
+  /* ── Typewriter effect for indicator query (localized via data-query) ─── */
+  var queryEl = document.getElementById('queryText');
+  var indicatorEl = document.getElementById('heroIndicator');
+  var queryStr = (queryEl && queryEl.dataset.query) || '';
+  var doneLabel = (indicatorEl && indicatorEl.dataset.done) || 'Done';
+  var charIdx = 0;
+  function typeChar() {
+    if (charIdx < queryStr.length) {
+      queryEl.textContent += queryStr[charIdx];
+      charIdx++;
+      setTimeout(typeChar, prefersReducedMotion ? 0 : (42 + Math.random() * 28));
+    }
+  }
+  setTimeout(typeChar, prefersReducedMotion ? 0 : 900);
+
+  /* ── Indicator rows: fire after typewriter finishes ──── */
+  var rows = [
+    document.getElementById('ind0'),
+    document.getElementById('ind1'),
+    document.getElementById('ind2')
+  ];
+  var statuses = [document.getElementById('s0'), document.getElementById('s1'), document.getElementById('s2')];
+  var fills = document.querySelectorAll('.ind-fill');
+  /* Typewriter takes ~900 + chars * ~55ms. Rows start at ~2500ms */
+  rows.forEach(function (row, i) {
+    var startMs = prefersReducedMotion ? i * 100 : 2500 + i * 400;
+    setTimeout(function () {
+      row.classList.add('active');
+      gsap.to(fills[i], {
+        width: '100%',
+        duration: prefersReducedMotion ? 0 : (0.7 + Math.random() * 0.5),
+        ease: 'power1.inOut',
+        onComplete: function () {
+          row.classList.remove('active');
+          row.classList.add('done');
+          statuses[i].textContent = doneLabel;
+          if (i === 2) {
+            setTimeout(function () {
+              document.getElementById('indFused').classList.add('visible');
+            }, 300);
+          }
+        }
+      });
+    }, startMs);
+  });
+
+  /* ── Hero parallax on scroll ──────────────────────────── */
+  if (!prefersReducedMotion) {
+    gsap.to('.hero-text', {
+      y: -80,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '#hero',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true
+      }
+    });
+  }
+
+  /* ── How it works: modes stagger in ──────────────────── */
+  ScrollTrigger.create({
+    trigger: '.section-how',
+    start: 'top 75%',
+    onEnter: function () {
+      gsap.to('[data-how]', {
+        opacity: 1, y: 0, duration: 0.8, stagger: 0.2, ease: 'power2.out'
+      });
+    },
+    once: true
+  });
+
+  /* ── Showcase rows ─────────────────────────────────────── */
+  if (prefersReducedMotion) {
+    gsap.set('.sc-device-wrap, .sc-copy', { opacity: 1, y: 0 });
+  } else {
+    document.querySelectorAll('[data-show-row]').forEach(function (row) {
+      ScrollTrigger.create({
+        trigger: row,
+        start: 'top 78%',
+        onEnter: function () {
+          var items = row.querySelectorAll('.sc-device-wrap, .sc-copy');
+          gsap.to(items, { opacity: 1, y: 0, duration: 0.8, stagger: 0.15, ease: 'power2.out' });
+        },
+        once: true
+      });
+      var phone = row.querySelector('.sc-phone');
+      if (phone) {
+        gsap.to(phone, {
+          yPercent: -6,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: row,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: true
+          }
+        });
+      }
+    });
+  }
+
+  /* ── Anti-hallucination headline lines reveal ─────────── */
+  var ahLines = document.querySelectorAll('.ah-line');
+  if (!prefersReducedMotion) {
+    gsap.set(ahLines, { clipPath: 'inset(0 100% 0 0)' });
+    ScrollTrigger.create({
+      trigger: '#anti-hallucination',
+      start: 'top 70%',
+      onEnter: function () {
+        gsap.to(ahLines, {
+          clipPath: 'inset(0 0% 0 0)', duration: 0.8, stagger: 0.12, ease: 'power3.out'
+        });
+      },
+      once: true
+    });
+  }
+
+  /* Anti-hallucination right side */
+  ScrollTrigger.create({
+    trigger: '#anti-hallucination',
+    start: 'top 65%',
+    onEnter: function () {
+      gsap.from('.anti-right', { opacity: 0, x: prefersReducedMotion ? 0 : 30, duration: 0.9, ease: 'power2.out' });
+    },
+    once: true
+  });
+
+  /* Anti stats counter */
+  ScrollTrigger.create({
+    trigger: '.anti-stat-row',
+    start: 'top 80%',
+    onEnter: function () {
+      gsap.from('.anti-stat', { opacity: 0, y: prefersReducedMotion ? 0 : 20, stagger: 0.1, duration: 0.6, ease: 'power2.out' });
+    },
+    once: true
+  });
+
+  /* ── AI Families: cards from alternating sides ────────── */
+  famCards.forEach(function (card, i) {
+    ScrollTrigger.create({
+      trigger: '.section-families',
+      start: 'top 70%',
+      onEnter: function () {
+        gsap.to(card, { opacity: 1, x: 0, duration: 0.8, delay: i * 0.15, ease: 'power2.out' });
+      },
+      once: true
     });
   });
 
-  /* ── Ambient floating particles ────────────────────── */
-  var particlesContainer = document.getElementById('particles');
-  var particleCount = 18;
+  /* ── Pricing cards ────────────────────────────────────── */
+  var priceCards = document.querySelectorAll('[data-price]');
+  ScrollTrigger.create({
+    trigger: '.section-pricing',
+    start: 'top 72%',
+    onEnter: function () {
+      gsap.to(priceCards, { opacity: 1, y: 0, duration: 0.7, stagger: 0.18, ease: 'power2.out' });
+    },
+    once: true
+  });
 
-  for (var i = 0; i < particleCount; i++) {
-    var p = document.createElement('div');
-    p.classList.add('particle');
-    var size = Math.random() * 4 + 2;
-    p.style.width = size + 'px';
-    p.style.height = size + 'px';
-    p.style.left = Math.random() * 100 + '%';
-    p.style.top = (Math.random() * 100 + 100) + '%';
-    p.style.animationDuration = (Math.random() * 12 + 10) + 's';
-    p.style.animationDelay = (Math.random() * 8) + 's';
-    p.style.opacity = Math.random() * 0.4 + 0.1;
-    particlesContainer.appendChild(p);
+  /* ── Footer ───────────────────────────────────────────── */
+  ScrollTrigger.create({
+    trigger: '.footer',
+    start: 'top 90%',
+    onEnter: function () {
+      gsap.to('.footer', { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' });
+    },
+    once: true
+  });
+
+  /* ── Magnetic buttons ─────────────────────────────────── */
+  if (!prefersReducedMotion) {
+    document.querySelectorAll('.btn-magnetic').forEach(function (btn) {
+      btn.addEventListener('mousemove', function (e) {
+        var rect = btn.getBoundingClientRect();
+        var x = e.clientX - rect.left - rect.width / 2;
+        var y = e.clientY - rect.top - rect.height / 2;
+        gsap.to(btn, { x: x * 0.25, y: y * 0.25, duration: 0.3, ease: 'power2.out' });
+      });
+      btn.addEventListener('mouseleave', function () {
+        gsap.to(btn, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1, 0.5)' });
+      });
+    });
   }
 
 })();
-</script>
-
-</body>
-</html>
+</script>  </body></html>

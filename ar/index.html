@@ -1,0 +1,281 @@
+<!DOCTYPE html><html lang="ar" dir="rtl"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>OneAnswerAI — ثلاثة ذكاءات. إجابة واحدة.</title><meta name="description" content="اسأل مرة واحدة. OpenAI وGoogle Gemini وAnthropic Claude يجيبون في آنٍ واحد. OneAnswerAI يدمجها في إجابة واحدة موثوقة."><link rel="alternate" hreflang="en" href="https://one-answer-ai.com/"><link rel="alternate" hreflang="it" href="https://one-answer-ai.com/it"><link rel="alternate" hreflang="es" href="https://one-answer-ai.com/es"><link rel="alternate" hreflang="fr" href="https://one-answer-ai.com/fr"><link rel="alternate" hreflang="de" href="https://one-answer-ai.com/de"><link rel="alternate" hreflang="ar" href="https://one-answer-ai.com/ar"><link rel="alternate" hreflang="zh-Hans" href="https://one-answer-ai.com/zh"><link rel="alternate" hreflang="x-default" href="https://one-answer-ai.com/"><meta name="theme-color" content="#000000"><meta property="og:type" content="website"><meta property="og:site_name" content="OneAnswerAI"><meta property="og:title" content="OneAnswerAI — ثلاثة ذكاءات. إجابة واحدة."><meta property="og:description" content="اسأل مرة واحدة. OpenAI وGoogle Gemini وAnthropic Claude يجيبون في آنٍ واحد. OneAnswerAI يدمجها في إجابة واحدة موثوقة."><meta property="og:url" content="https://one-answer-ai.com"><meta property="og:image" content="https://one-answer-ai.com/og-image.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://one-answer-ai.com/og-image.png"><!-- GSAP + ScrollTrigger + Lenis via CDN --><script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script><script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script><link rel="stylesheet" href="/_astro/Body.Dz9XOQYy.css"></head> <body> <!-- Global UI: cursor glow + scroll progress --> <div id="cursor-glow" aria-hidden="true"></div> <div id="scroll-progress" aria-hidden="true"></div>  <nav id="nav" data-astro-cid-dmqpwcec> <div class="container nav-inner" data-astro-cid-dmqpwcec> <a href="/ar" class="nav-brand" data-astro-cid-dmqpwcec>One<em data-astro-cid-dmqpwcec>Answer</em>AI</a> <ul class="nav-links" id="navLinks" data-astro-cid-dmqpwcec> <li data-astro-cid-dmqpwcec><a href="#how" data-astro-cid-dmqpwcec>كيف يعمل</a></li> <li data-astro-cid-dmqpwcec><a href="#families" data-astro-cid-dmqpwcec>عائلات الذكاء الاصطناعي</a></li> <li data-astro-cid-dmqpwcec><a href="#pricing" data-astro-cid-dmqpwcec>الأسعار</a></li> <li class="nav-lang" data-astro-cid-dmqpwcec> <button class="nav-lang-btn" id="navLangBtn" aria-haspopup="true" aria-expanded="false" aria-label="اللغة" data-astro-cid-dmqpwcec> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" data-astro-cid-dmqpwcec><circle cx="12" cy="12" r="10" data-astro-cid-dmqpwcec></circle><path d="M2 12h20M12 2a15.3 15.3 0 0 1 0 20M12 2a15.3 15.3 0 0 0 0 20" data-astro-cid-dmqpwcec></path></svg> <span data-astro-cid-dmqpwcec>العربية</span> </button> <ul class="nav-lang-menu" id="navLangMenu" data-astro-cid-dmqpwcec> <li data-astro-cid-dmqpwcec> <a href="/" class lang="en" hreflang="en" data-astro-cid-dmqpwcec> English </a> </li><li data-astro-cid-dmqpwcec> <a href="/it" class lang="it" hreflang="it" data-astro-cid-dmqpwcec> Italiano </a> </li><li data-astro-cid-dmqpwcec> <a href="/es" class lang="es" hreflang="es" data-astro-cid-dmqpwcec> Español </a> </li><li data-astro-cid-dmqpwcec> <a href="/fr" class lang="fr" hreflang="fr" data-astro-cid-dmqpwcec> Français </a> </li><li data-astro-cid-dmqpwcec> <a href="/de" class lang="de" hreflang="de" data-astro-cid-dmqpwcec> Deutsch </a> </li><li data-astro-cid-dmqpwcec> <a href="/ar" class="is-active" lang="ar" hreflang="ar" data-astro-cid-dmqpwcec> العربية </a> </li><li data-astro-cid-dmqpwcec> <a href="/zh" class lang="zh" hreflang="zh" data-astro-cid-dmqpwcec> 中文 </a> </li> </ul> </li> <li data-astro-cid-dmqpwcec> <a href="https://apps.apple.com/app/oneanswerai/id6756519049" class="nav-cta" data-astro-cid-dmqpwcec> تحميل </a> </li> </ul> <button class="nav-burger" id="navBurger" aria-label="Menu" data-astro-cid-dmqpwcec> <span data-astro-cid-dmqpwcec></span><span data-astro-cid-dmqpwcec></span> </button> </div> </nav>  <script>
+(function () {
+  var nav = document.getElementById('nav');
+  window.addEventListener('scroll', function () {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+  var burger = document.getElementById('navBurger');
+  var links = document.getElementById('navLinks');
+  burger.addEventListener('click', function () {
+    links.classList.toggle('open');
+  });
+  links.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () { links.classList.remove('open'); });
+  });
+
+  /* Language dropdown */
+  var langBtn = document.getElementById('navLangBtn');
+  var langMenu = document.getElementById('navLangMenu');
+  if (langBtn && langMenu) {
+    langBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var open = langMenu.classList.toggle('open');
+      langBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    document.addEventListener('click', function (e) {
+      if (!langMenu.contains(e.target) && e.target !== langBtn) {
+        langMenu.classList.remove('open');
+        langBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+})();
+</script> <section id="hero" data-astro-cid-bbe6dxrz> <div class="container hero-grid" data-astro-cid-bbe6dxrz> <!-- LEFT: editorial text block --> <div class="hero-text" data-astro-cid-bbe6dxrz> <span class="eyebrow" data-astro-cid-bbe6dxrz>ذكاء اصطناعي متعدد المزودين — iOS و Android</span> <h1 class="hero-h1" data-astro-cid-bbe6dxrz>  <span class="h1-word" data-word data-astro-cid-bbe6dxrz>ثلاثة</span>  <span class="h1-word" data-word data-astro-cid-bbe6dxrz>ذكاءات.</span><br class="h1-br" data-astro-cid-bbe6dxrz> <span class="h1-word" data-word data-astro-cid-bbe6dxrz>إجابة</span>  <span class="h1-word" data-word data-astro-cid-bbe6dxrz>واحدة.</span>  </h1> <p class="hero-copy" data-astro-cid-bbe6dxrz>كنتَ تسأل ذكاءً واحداً في كل مرة. هذا يعني أنك تترك إجابتين على الطاولة. OneAnswerAI يسأل OpenAI وGemini وClaude في آنٍ واحد — ثم يدمج إجاباتهم في إجابة واحدة موثوقة، أو يتيح لك اختيار الأفضل. تطبيق واحد. الثلاثة جميعاً. لا تبديل.</p> <a href="https://apps.apple.com/app/oneanswerai/id6756519049" class="btn-primary btn-magnetic" id="heroCta" data-astro-cid-bbe6dxrz> <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-astro-cid-bbe6dxrz> <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" data-astro-cid-bbe6dxrz></path> </svg> حمّل من App Store </a> <div class="hero-badges" data-astro-cid-bbe6dxrz> <span class="badge" data-astro-cid-bbe6dxrz>وضع الاختيار</span><span class="badge" data-astro-cid-bbe6dxrz>Meta-Fusion</span><span class="badge" data-astro-cid-bbe6dxrz>PDF والصور</span><span class="badge" data-astro-cid-bbe6dxrz>7 لغات</span> </div> </div> <!-- RIGHT: live query indicator --> <div class="hero-indicator" id="heroIndicator" data-done="تم" data-astro-cid-bbe6dxrz> <div class="indicator-query" data-astro-cid-bbe6dxrz> <span class="query-prompt" data-astro-cid-bbe6dxrz>سؤالك</span> <span class="query-text" id="queryText" data-query="ما أسباب تغير المناخ؟" data-astro-cid-bbe6dxrz></span><span class="query-cursor" aria-hidden="true" data-astro-cid-bbe6dxrz>|</span> </div> <div class="indicator-label" data-astro-cid-bbe6dxrz>التوجيه إلى ثلاث عائلات…</div> <div class="indicator-rows" data-astro-cid-bbe6dxrz> <div class="indicator-row" id="ind0" data-astro-cid-bbe6dxrz> <div class="ind-dot" data-astro-cid-bbe6dxrz></div> <div class="ind-info" data-astro-cid-bbe6dxrz> <span class="ind-name" data-astro-cid-bbe6dxrz>OpenAI</span> <span class="ind-status" id="s0" data-astro-cid-bbe6dxrz>جارٍ المعالجة…</span> </div> <div class="ind-bar" data-astro-cid-bbe6dxrz><div class="ind-fill" data-astro-cid-bbe6dxrz></div></div> </div> <div class="indicator-row" id="ind1" data-astro-cid-bbe6dxrz> <div class="ind-dot" data-astro-cid-bbe6dxrz></div> <div class="ind-info" data-astro-cid-bbe6dxrz> <span class="ind-name" data-astro-cid-bbe6dxrz>Google Gemini</span> <span class="ind-status" id="s1" data-astro-cid-bbe6dxrz>جارٍ المعالجة…</span> </div> <div class="ind-bar" data-astro-cid-bbe6dxrz><div class="ind-fill" data-astro-cid-bbe6dxrz></div></div> </div> <div class="indicator-row" id="ind2" data-astro-cid-bbe6dxrz> <div class="ind-dot" data-astro-cid-bbe6dxrz></div> <div class="ind-info" data-astro-cid-bbe6dxrz> <span class="ind-name" data-astro-cid-bbe6dxrz>Anthropic Claude</span> <span class="ind-status" id="s2" data-astro-cid-bbe6dxrz>جارٍ المعالجة…</span> </div> <div class="ind-bar" data-astro-cid-bbe6dxrz><div class="ind-fill" data-astro-cid-bbe6dxrz></div></div> </div> </div> <div class="indicator-fused" id="indFused" data-astro-cid-bbe6dxrz> <div class="fused-label" data-astro-cid-bbe6dxrz>Meta-Fusion</div> <div class="fused-text" data-astro-cid-bbe6dxrz>إجابة موثوقة واحدة جاهزة</div> </div> </div> <!-- Scroll hint --> <div class="hero-scroll-hint" id="heroScrollHint" aria-hidden="true" data-astro-cid-bbe6dxrz> <span data-astro-cid-bbe6dxrz>تمرير</span> <div class="scroll-line" data-astro-cid-bbe6dxrz></div> </div> </div></section> <div class="marquee-wrap" aria-hidden="true" data-astro-cid-tpudeaz7> <div class="marquee-track" data-astro-cid-tpudeaz7> <span data-astro-cid-tpudeaz7>OpenAI</span><span class="dot" data-astro-cid-tpudeaz7>&middot;</span> <span data-astro-cid-tpudeaz7>Google Gemini</span><span class="dot" data-astro-cid-tpudeaz7>&middot;</span> <span data-astro-cid-tpudeaz7>Anthropic Claude</span><span class="dot" data-astro-cid-tpudeaz7>&middot;</span> <span data-astro-cid-tpudeaz7>Meta-Fusion</span><span class="dot" data-astro-cid-tpudeaz7>&middot;</span> <span data-astro-cid-tpudeaz7>OpenAI</span><span class="dot" data-astro-cid-tpudeaz7>&middot;</span> <span data-astro-cid-tpudeaz7>Google Gemini</span><span class="dot" data-astro-cid-tpudeaz7>&middot;</span> <span data-astro-cid-tpudeaz7>Anthropic Claude</span><span class="dot" data-astro-cid-tpudeaz7>&middot;</span> <span data-astro-cid-tpudeaz7>Meta-Fusion</span><span class="dot" data-astro-cid-tpudeaz7>&middot;</span> <span data-astro-cid-tpudeaz7>OpenAI</span><span class="dot" data-astro-cid-tpudeaz7>&middot;</span> <span data-astro-cid-tpudeaz7>Google Gemini</span><span class="dot" data-astro-cid-tpudeaz7>&middot;</span> <span data-astro-cid-tpudeaz7>Anthropic Claude</span><span class="dot" data-astro-cid-tpudeaz7>&middot;</span> <span data-astro-cid-tpudeaz7>Meta-Fusion</span><span class="dot" data-astro-cid-tpudeaz7>&middot;</span> </div> </div> <section id="how" class="section-how" data-astro-cid-cmgpsf2k> <div class="container" data-astro-cid-cmgpsf2k> <div class="how-header" data-astro-cid-cmgpsf2k> <span class="section-num" data-astro-cid-cmgpsf2k>كيف يعمل</span> <hr class="hr how-rule" data-astro-cid-cmgpsf2k> </div> <div class="how-modes" data-astro-cid-cmgpsf2k> <div class="how-mode" data-how="picking" data-astro-cid-cmgpsf2k> <div class="how-mode-num" data-astro-cid-cmgpsf2k>A</div> <h2 class="how-mode-title" data-astro-cid-cmgpsf2k>وضع الاختيار</h2> <p class="how-mode-desc" data-astro-cid-cmgpsf2k>اطّلع على الإجابة الخام من كل عائلة ذكاء اصطناعي جنباً إلى جنب. اقرأ الثلاث، قرّر أيها يناسبك، انسخها. أنت من يتحكم.</p> <ol class="how-steps" data-astro-cid-cmgpsf2k> <li class="how-step" data-astro-cid-cmgpsf2k> <span class="step-n" data-astro-cid-cmgpsf2k>01</span> <div data-astro-cid-cmgpsf2k> <strong data-astro-cid-cmgpsf2k>اسأل مرة واحدة</strong> <p data-astro-cid-cmgpsf2k>اكتب سؤالك. يُحال فوراً إلى OpenAI وGemini وClaude في آنٍ واحد.</p> </div> </li><li class="how-step" data-astro-cid-cmgpsf2k> <span class="step-n" data-astro-cid-cmgpsf2k>02</span> <div data-astro-cid-cmgpsf2k> <strong data-astro-cid-cmgpsf2k>اقرأ ثلاث إجابات</strong> <p data-astro-cid-cmgpsf2k>كل عائلة ذكاء اصطناعي تجيب باستقلالية وبالتوازي. لا انتظار لانتهاء إجابة قبل بدء الأخرى.</p> </div> </li><li class="how-step" data-astro-cid-cmgpsf2k> <span class="step-n" data-astro-cid-cmgpsf2k>03</span> <div data-astro-cid-cmgpsf2k> <strong data-astro-cid-cmgpsf2k>اختر الأفضل</strong> <p data-astro-cid-cmgpsf2k>انقر على الإجابة التي تثق بها أكثر. احفظها أو انسخها أو واصل المحادثة مع ذلك الذكاء.</p> </div> </li> </ol> </div><div class="how-mode" data-how="fusion" data-astro-cid-cmgpsf2k> <div class="how-mode-num" data-astro-cid-cmgpsf2k>B</div> <h2 class="how-mode-title" data-astro-cid-cmgpsf2k>Meta-Fusion</h2> <p class="how-mode-desc" data-astro-cid-cmgpsf2k>دع المحرك يجمع. نأخذ أقوى عناصر كل إجابة وندمجها في رد واحد شامل. قراءة أقل، إنجاز أكثر.</p> <ol class="how-steps" data-astro-cid-cmgpsf2k> <li class="how-step" data-astro-cid-cmgpsf2k> <span class="step-n" data-astro-cid-cmgpsf2k>01</span> <div data-astro-cid-cmgpsf2k> <strong data-astro-cid-cmgpsf2k>اسأل مرة واحدة</strong> <p data-astro-cid-cmgpsf2k>نفس السؤال، نفس التدفق. الثلاث عائلات تستقبله في آنٍ واحد.</p> </div> </li><li class="how-step" data-astro-cid-cmgpsf2k> <span class="step-n" data-astro-cid-cmgpsf2k>02</span> <div data-astro-cid-cmgpsf2k> <strong data-astro-cid-cmgpsf2k>التحقق المتبادل</strong> <p data-astro-cid-cmgpsf2k>طبقة CPFM لدينا تقارن الإجابات الثلاث وتحدد نقاط الاتفاق والتناقض.</p> </div> </li><li class="how-step" data-astro-cid-cmgpsf2k> <span class="step-n" data-astro-cid-cmgpsf2k>03</span> <div data-astro-cid-cmgpsf2k> <strong data-astro-cid-cmgpsf2k>إجابة مدموجة واحدة</strong> <p data-astro-cid-cmgpsf2k>أفضل أجزاء كل إجابة، ممزوجة في واحدة. الهلوسات التي أنتجها ذكاء واحد فقط تُستبعد تلقائياً.</p> </div> </li> </ol> </div> </div> </div> </section> <section id="showcase" class="section-showcase" data-astro-cid-xyg7ob6d> <div class="container" data-astro-cid-xyg7ob6d> <div class="sc-header" data-astro-cid-xyg7ob6d> <span class="section-num" data-astro-cid-xyg7ob6d>داخل التطبيق</span> <hr class="hr sc-rule" data-astro-cid-xyg7ob6d> </div> <div class="sc-intro" data-astro-cid-xyg7ob6d> <h2 class="sc-section-title" data-astro-cid-xyg7ob6d>كيف يبدو التطبيق في الواقع.</h2> </div> <div class="sc-rows" data-astro-cid-xyg7ob6d> <div class="sc-row" data-show-row data-astro-cid-xyg7ob6d> <div class="sc-device-wrap" data-astro-cid-xyg7ob6d> <div class="sc-phone" data-astro-cid-xyg7ob6d> <div class="sc-screen" data-astro-cid-xyg7ob6d> <div class="sc-placeholder" aria-hidden="true" data-astro-cid-xyg7ob6d> <span class="sc-placeholder-label" data-astro-cid-xyg7ob6d>chat</span> </div> <img src="/screens/chat.png" alt="شاشة المحادثة — اسأل مرة، احصل على إجابة مدموجة واحدة" loading="lazy" class="sc-img" onerror="this.style.display='none'" data-astro-cid-xyg7ob6d> </div> </div> </div> <div class="sc-copy" data-astro-cid-xyg7ob6d> <span class="eyebrow" data-astro-cid-xyg7ob6d>الإجابة</span> <h3 class="sc-headline" data-astro-cid-xyg7ob6d>اسأل مرة. اقرأ إجابة واحدة.</h3> <p class="sc-body" data-astro-cid-xyg7ob6d>سؤالك يصل إلى الثلاثة نماذج في وقت واحد. تقرأ نتيجة مدموجة واحدة — لا ثلاث تبويبات تتوفق بينها بنفسك.</p> </div> </div><div class="sc-row sc-row--flip" data-show-row data-astro-cid-xyg7ob6d> <div class="sc-device-wrap" data-astro-cid-xyg7ob6d> <div class="sc-phone" data-astro-cid-xyg7ob6d> <div class="sc-screen" data-astro-cid-xyg7ob6d> <div class="sc-placeholder" aria-hidden="true" data-astro-cid-xyg7ob6d> <span class="sc-placeholder-label" data-astro-cid-xyg7ob6d>home</span> </div> <img src="/screens/home.png" alt="الشاشة الرئيسية — بسيطة، لا شيء يعترضك" loading="lazy" class="sc-img" onerror="this.style.display='none'" data-astro-cid-xyg7ob6d> </div> </div> </div> <div class="sc-copy" data-astro-cid-xyg7ob6d> <span class="eyebrow" data-astro-cid-xyg7ob6d>الشعور</span> <h3 class="sc-headline" data-astro-cid-xyg7ob6d>لا شيء يعترضك.</h3> <p class="sc-body" data-astro-cid-xyg7ob6d>افتحه، اسأل، خلاص. لا اختيار نموذج، لا متاهة إعدادات. الواجهة تبتعد عن الطريق لتكون الإجابة الشيء الوحيد على الشاشة.</p> </div> </div><div class="sc-row" data-show-row data-astro-cid-xyg7ob6d> <div class="sc-device-wrap" data-astro-cid-xyg7ob6d> <div class="sc-phone" data-astro-cid-xyg7ob6d> <div class="sc-screen" data-astro-cid-xyg7ob6d> <div class="sc-placeholder" aria-hidden="true" data-astro-cid-xyg7ob6d> <span class="sc-placeholder-label" data-astro-cid-xyg7ob6d>image</span> </div> <img src="/screens/image.png" alt="شاشة تعديل الصور — عدّل صورك بالسؤال" loading="lazy" class="sc-img" onerror="this.style.display='none'" data-astro-cid-xyg7ob6d> </div> </div> </div> <div class="sc-copy" data-astro-cid-xyg7ob6d> <span class="eyebrow" data-astro-cid-xyg7ob6d>الصور</span> <h3 class="sc-headline" data-astro-cid-xyg7ob6d>عدّل الصور بالسؤال.</h3> <p class="sc-body" data-astro-cid-xyg7ob6d>أرسل صورة، صف التغيير بكلمات عادية، استقبلها. لا طبقات، لا فرش، لا أدوات تتعلمها.</p> </div> </div><div class="sc-row sc-row--flip" data-show-row data-astro-cid-xyg7ob6d> <div class="sc-device-wrap" data-astro-cid-xyg7ob6d> <div class="sc-phone" data-astro-cid-xyg7ob6d> <div class="sc-screen" data-astro-cid-xyg7ob6d> <div class="sc-placeholder" aria-hidden="true" data-astro-cid-xyg7ob6d> <span class="sc-placeholder-label" data-astro-cid-xyg7ob6d>insights</span> </div> <img src="/screens/insights.png" alt="شاشة الإحصاءات — استخدامك عبر الوقت" loading="lazy" class="sc-img" onerror="this.style.display='none'" data-astro-cid-xyg7ob6d> </div> </div> </div> <div class="sc-copy" data-astro-cid-xyg7ob6d> <span class="eyebrow" data-astro-cid-xyg7ob6d>استخدامك</span> <h3 class="sc-headline" data-astro-cid-xyg7ob6d>اعرف ما سألته فعلاً.</h3> <p class="sc-body" data-astro-cid-xyg7ob6d>عرض بسيط لنشاطك وموضوعاتك عبر الوقت، لتبقى فائدة التطبيق واضحة لا غامضة.</p> </div> </div> </div> </div> </section> <section id="anti-hallucination" class="section-anti" data-astro-cid-fvlrnjxq> <div class="container" data-astro-cid-fvlrnjxq> <div class="anti-header" data-astro-cid-fvlrnjxq> <span class="section-num" data-astro-cid-fvlrnjxq>مكافحة الهلوسة</span> <hr class="hr anti-rule" data-astro-cid-fvlrnjxq> </div> <div class="anti-grid" data-astro-cid-fvlrnjxq> <div class="anti-left" data-astro-cid-fvlrnjxq> <h2 class="anti-headline" id="antiHeadline" data-astro-cid-fvlrnjxq> <span class="ah-line" data-astro-cid-fvlrnjxq>عندما يخمّن</span><span class="ah-line" data-astro-cid-fvlrnjxq>ذكاء واحد،</span><span class="ah-line ah-accent" data-astro-cid-fvlrnjxq>الآخران</span><span class="ah-line ah-accent" data-astro-cid-fvlrnjxq>يعرفان.</span> </h2> </div> <div class="anti-right" data-astro-cid-fvlrnjxq> <p class="anti-intro" data-astro-cid-fvlrnjxq>كل ذكاء اصطناعي يخترع أشياء أحياناً. هذه ليست خللاً — بل خاصية أساسية في طريقة عمل نماذج اللغة. المشكلة أنها لا تخبرك عندما تخمّن.</p> <div class="cpfm-box" data-astro-cid-fvlrnjxq> <span class="eyebrow" data-astro-cid-fvlrnjxq>CPFM — Cross-Provider Fact Mesh</span> <p data-astro-cid-fvlrnjxq>عندما تتفق ثلاث عائلات ذكاء اصطناعي مستقلة على حقيقة، تكون درجة الثقة عالية. وعندما تختلف، ترى الخلاف — وفي وضع Meta-Fusion، يُشير المحرك إلى الجزء المتنازع عليه بدلاً من اختيار أحدها بصمت.</p> <p data-astro-cid-fvlrnjxq>OneAnswerAI لا يقضي على الهلوسات. بل يجعلها مرئية ويستخدم الإجماع للحد منها.</p> </div> <div class="anti-stat-row" data-astro-cid-fvlrnjxq> <div class="anti-stat" data-astro-cid-fvlrnjxq> <span class="stat-num" data-astro-cid-fvlrnjxq>3×</span> <span class="stat-label" data-astro-cid-fvlrnjxq>مصادر مستقلة لكل إجابة</span> </div><div class="anti-stat" data-astro-cid-fvlrnjxq> <span class="stat-num" data-astro-cid-fvlrnjxq>0</span> <span class="stat-label" data-astro-cid-fvlrnjxq>نقطة فشل واحدة</span> </div><div class="anti-stat" data-astro-cid-fvlrnjxq> <span class="stat-num" data-astro-cid-fvlrnjxq>7</span> <span class="stat-label" data-astro-cid-fvlrnjxq>لغات، كلها مدققة</span> </div> </div> </div> </div> </div> </section> <section id="families" class="section-families" data-astro-cid-jr27z45k> <div class="container" data-astro-cid-jr27z45k> <div class="fam-header" data-astro-cid-jr27z45k> <span class="section-num" data-astro-cid-jr27z45k>العائلات الثلاث</span> <hr class="hr fam-rule" data-astro-cid-jr27z45k> </div> <p class="fam-intro" data-astro-cid-jr27z45k>نحن لا نوجّه إلى نموذج محدد — بل إلى عائلة. مع إصدار كل مزود نماذج أفضل، تحصل تلقائياً على إجابات أفضل.</p> <div class="fam-grid" data-astro-cid-jr27z45k> <div class="fam-card fam-card--featured" data-fam="0" data-astro-cid-jr27z45k> <div class="fam-top" data-astro-cid-jr27z45k> <span class="fam-tag" data-astro-cid-jr27z45k>الطبقة العادية</span> <div class="fam-logo fam-logo--openai" data-astro-cid-jr27z45k>GPT</div> </div> <h3 class="fam-name" data-astro-cid-jr27z45k>OpenAI</h3> <p class="fam-char" data-astro-cid-jr27z45k>متعدد الاستخدامات. موثوق. الحصان الأقوى.</p> <p class="fam-desc" data-astro-cid-jr27z45k>أكثر عائلات الذكاء الاصطناعي استخداماً. قوي في المنطق والبرمجة والمهام المنظمة. طبقتنا العادية توجّه هنا افتراضياً.</p> </div><div class="fam-card" data-fam="1" data-astro-cid-jr27z45k> <div class="fam-top" data-astro-cid-jr27z45k> <span class="fam-tag" data-astro-cid-jr27z45k>الطبقة السريعة</span> <div class="fam-logo fam-logo--gemini" data-astro-cid-jr27z45k>G</div> </div> <h3 class="fam-name" data-astro-cid-jr27z45k>Google Gemini</h3> <p class="fam-char" data-astro-cid-jr27z45k>حديث. متعدد الوسائط. متصل.</p> <p class="fam-desc" data-astro-cid-jr27z45k>محسّن للسرعة والحداثة. قوي في البحث الواقعي والأحداث الراهنة وتحليل الصور.</p> </div><div class="fam-card" data-fam="2" data-astro-cid-jr27z45k> <div class="fam-top" data-astro-cid-jr27z45k> <span class="fam-tag" data-astro-cid-jr27z45k>الطبقة المتميزة</span> <div class="fam-logo fam-logo--claude" data-astro-cid-jr27z45k>C</div> </div> <h3 class="fam-name" data-astro-cid-jr27z45k>Anthropic Claude</h3> <p class="fam-char" data-astro-cid-jr27z45k>متأنٍّ. آمن. دقيق.</p> <p class="fam-desc" data-astro-cid-jr27z45k>مبني مع مراعاة الأمان والدقة. استثنائي في المستندات الطويلة والتفكير الرصين والمهام التي تتطلب تأملاً أعمق.</p> </div> </div> <p class="fam-footnote" data-astro-cid-jr27z45k>الثلاثة يجيبون بالتوازي. لا تنتظر انتهاء أحدهم قبل أن يبدأ الآخر.</p> </div> </section> <section id="pricing" class="section-pricing" data-astro-cid-hkoc4sea> <div class="container" data-astro-cid-hkoc4sea> <div class="pricing-header" data-astro-cid-hkoc4sea> <span class="section-num" data-astro-cid-hkoc4sea>الأسعار</span> <hr class="hr pricing-rule" data-astro-cid-hkoc4sea> </div> <h2 class="pricing-title" data-astro-cid-hkoc4sea>ابدأ مجاناً.<br data-astro-cid-hkoc4sea>انطلق أبعد مع Pro.</h2> <div class="pricing-grid" data-astro-cid-hkoc4sea> <div class="pricing-card" data-price="0" data-astro-cid-hkoc4sea> <div class="price-tier" data-astro-cid-hkoc4sea>مجاني</div> <div class="price-amount" data-astro-cid-hkoc4sea>$0</div> <p class="price-desc" data-astro-cid-hkoc4sea>جرّبه اليوم، لا بطاقة ائتمانية مطلوبة.</p> <ul class="price-features" data-astro-cid-hkoc4sea> <li data-astro-cid-hkoc4sea>10 استفسارات يومياً</li><li data-astro-cid-hkoc4sea>وضع الاختيار — قارن ثلاثة ذكاءات</li><li data-astro-cid-hkoc4sea>جميع اللغات السبع</li><li data-astro-cid-hkoc4sea>محادثات مستمرة</li><li data-astro-cid-hkoc4sea>تحليل PDF والصور (محدود)</li> </ul> <a href="https://apps.apple.com/app/oneanswerai/id6756519049" class="btn-outline" data-astro-cid-hkoc4sea> حمّل مجاناً </a> </div> <div class="pricing-card pricing-card--pro" data-price="1" data-astro-cid-hkoc4sea> <div class="price-tier" data-astro-cid-hkoc4sea>Pro</div> <div class="price-amount" data-astro-cid-hkoc4sea>$5.99<span class="price-period" data-astro-cid-hkoc4sea>/أسبوع</span></div> <div class="price-alt" data-astro-cid-hkoc4sea>أو $17.99/شهر</div> <p class="price-desc" data-astro-cid-hkoc4sea>استفسارات أكثر، Meta-Fusion، دعم كامل لـ PDF والصور.</p> <ul class="price-features" data-astro-cid-hkoc4sea> <li data-astro-cid-hkoc4sea>حتى 40 استفساراً يومياً</li><li data-astro-cid-hkoc4sea>وضع Meta-Fusion</li><li data-astro-cid-hkoc4sea>تحليل PDF والصور (كامل)</li><li data-astro-cid-hkoc4sea>حزم استفسارات اختيارية للمزيد</li><li data-astro-cid-hkoc4sea>كل ما في الخطة المجانية</li> </ul> <a href="https://apps.apple.com/app/oneanswerai/id6756519049" class="btn-primary btn-magnetic" data-astro-cid-hkoc4sea> الترقية إلى Pro </a> </div> </div> </div> </section> <footer class="footer" data-astro-cid-sz7xmlte> <div class="container footer-inner" data-astro-cid-sz7xmlte> <div class="footer-brand" data-astro-cid-sz7xmlte> <a href="/ar" class="footer-logo" data-astro-cid-sz7xmlte>One<em data-astro-cid-sz7xmlte>Answer</em>AI</a> <p class="footer-tagline" data-astro-cid-sz7xmlte>ثلاثة ذكاءات. إجابة واحدة. صنعه مطور منفرد.</p> <div class="footer-social" data-astro-cid-sz7xmlte> <a href="https://x.com/OneAnswerAI" aria-label="X (Twitter)" rel="noopener" data-astro-cid-sz7xmlte> <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" data-astro-cid-sz7xmlte> <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" data-astro-cid-sz7xmlte></path> </svg> </a> <a href="https://www.instagram.com/oneanswer_ai/" aria-label="Instagram" rel="noopener" data-astro-cid-sz7xmlte> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-sz7xmlte> <rect x="2" y="2" width="20" height="20" rx="5" data-astro-cid-sz7xmlte></rect><circle cx="12" cy="12" r="5" data-astro-cid-sz7xmlte></circle> <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" data-astro-cid-sz7xmlte></circle> </svg> </a> <a href="https://www.tiktok.com/@oneanswer_ai" aria-label="TikTok" rel="noopener" data-astro-cid-sz7xmlte> <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" data-astro-cid-sz7xmlte> <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 0 0-.79-.05A6.34 6.34 0 0 0 3.15 15a6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.71a8.21 8.21 0 0 0 4.76 1.52v-3.4a4.85 4.85 0 0 1-1-.14z" data-astro-cid-sz7xmlte></path> </svg> </a> </div> </div> <div class="footer-cols" data-astro-cid-sz7xmlte> <div class="footer-col" data-astro-cid-sz7xmlte> <h4 data-astro-cid-sz7xmlte>المنتج</h4> <a href="#how" data-astro-cid-sz7xmlte>كيف يعمل</a> <a href="#families" data-astro-cid-sz7xmlte>عائلات الذكاء الاصطناعي</a> <a href="#pricing" data-astro-cid-sz7xmlte>الأسعار</a> </div> <div class="footer-col" data-astro-cid-sz7xmlte> <h4 data-astro-cid-sz7xmlte>القانونية</h4> <a href="https://m8seven.github.io/oneanswerai-privacy/" rel="noopener" data-astro-cid-sz7xmlte>سياسة الخصوصية</a> <a href="https://m8seven.github.io/oneanswerai-privacy/terms.html" rel="noopener" data-astro-cid-sz7xmlte>شروط الخدمة</a> </div> <div class="footer-col" data-astro-cid-sz7xmlte> <h4 data-astro-cid-sz7xmlte>الدعم</h4> <a href="mailto:oneanswerai@icloud.com" data-astro-cid-sz7xmlte>تواصل معنا</a> <a href="https://m8seven.github.io/oneanswerai-privacy/support.html" rel="noopener" data-astro-cid-sz7xmlte>الأسئلة الشائعة</a> </div> </div> </div> <div class="container footer-bottom" data-astro-cid-sz7xmlte> <span data-astro-cid-sz7xmlte>© 2026 OneAnswerAI. جميع الحقوق محفوظة.</span> <a href="https://apps.apple.com/app/oneanswerai/id6756519049" rel="noopener" data-astro-cid-sz7xmlte>حمّل من App Store</a> </div> </footer> <script>
+(function () {
+  var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ── Lenis + ScrollTrigger integration ─────────────────── */
+  var lenis = new Lenis({ duration: prefersReducedMotion ? 0 : 1.2, easing: function(t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); } });
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add(function (time) { lenis.raf(time * 1000); });
+  gsap.ticker.lagSmoothing(0);
+
+  /* ── Scroll progress bar ────────────────────────────────── */
+  var progressBar = document.getElementById('scroll-progress');
+  lenis.on('scroll', function (e) {
+    progressBar.style.width = (e.progress * 100) + '%';
+  });
+
+  /* ── Cursor glow ───────────────────────────────────────── */
+  if (!prefersReducedMotion) {
+    var glow = document.getElementById('cursor-glow');
+    document.addEventListener('mousemove', function (e) {
+      gsap.to(glow, { x: e.clientX, y: e.clientY, duration: 0.9, ease: 'power2.out', opacity: 1 });
+    }, { passive: true });
+    document.addEventListener('mouseleave', function () {
+      gsap.to(glow, { opacity: 0, duration: 0.4 });
+    });
+  }
+
+  /* ── Set initial states ─────────────────────────────────── */
+  var famCards = document.querySelectorAll('[data-fam]');
+  famCards.forEach(function (card, i) {
+    gsap.set(card, { opacity: 0, x: i === 0 ? -40 : i === 2 ? 40 : 0 });
+  });
+
+  /* ── Hero: word clip-path reveal on load ─────────────── */
+  var words = document.querySelectorAll('[data-word]');
+  if (!prefersReducedMotion) {
+    gsap.set(words, { clipPath: 'inset(0 100% 0 0)' });
+    gsap.to(words, {
+      clipPath: 'inset(0 0% 0 0)',
+      duration: 0.9,
+      stagger: 0.12,
+      ease: 'power3.out',
+      delay: 0.3
+    });
+  } else {
+    gsap.set(words, { opacity: 1 });
+  }
+
+  /* Hero copy + CTA + badges */
+  gsap.from('.hero-copy', { opacity: 0, y: prefersReducedMotion ? 0 : 20, duration: 0.8, delay: 0.9, ease: 'power2.out' });
+  gsap.from('#heroCta', { opacity: 0, y: prefersReducedMotion ? 0 : 16, duration: 0.7, delay: 1.1, ease: 'power2.out' });
+  gsap.from('.hero-badges .badge', {
+    opacity: 0, y: prefersReducedMotion ? 0 : 10, stagger: 0.08, duration: 0.5, delay: 1.2, ease: 'power2.out'
+  });
+
+  /* Hero indicator panel */
+  gsap.to('.hero-indicator', { opacity: 1, y: 0, duration: 0.6, delay: 0.8, ease: 'power2.out' });
+
+  /* Hero scroll hint */
+  gsap.to('#heroScrollHint', { opacity: 1, duration: 0.8, delay: 2.0, ease: 'power2.out' });
+
+  /* ── Typewriter effect for indicator query (localized via data-query) ─── */
+  var queryEl = document.getElementById('queryText');
+  var indicatorEl = document.getElementById('heroIndicator');
+  var queryStr = (queryEl && queryEl.dataset.query) || '';
+  var doneLabel = (indicatorEl && indicatorEl.dataset.done) || 'Done';
+  var charIdx = 0;
+  function typeChar() {
+    if (charIdx < queryStr.length) {
+      queryEl.textContent += queryStr[charIdx];
+      charIdx++;
+      setTimeout(typeChar, prefersReducedMotion ? 0 : (42 + Math.random() * 28));
+    }
+  }
+  setTimeout(typeChar, prefersReducedMotion ? 0 : 900);
+
+  /* ── Indicator rows: fire after typewriter finishes ──── */
+  var rows = [
+    document.getElementById('ind0'),
+    document.getElementById('ind1'),
+    document.getElementById('ind2')
+  ];
+  var statuses = [document.getElementById('s0'), document.getElementById('s1'), document.getElementById('s2')];
+  var fills = document.querySelectorAll('.ind-fill');
+  /* Typewriter takes ~900 + chars * ~55ms. Rows start at ~2500ms */
+  rows.forEach(function (row, i) {
+    var startMs = prefersReducedMotion ? i * 100 : 2500 + i * 400;
+    setTimeout(function () {
+      row.classList.add('active');
+      gsap.to(fills[i], {
+        width: '100%',
+        duration: prefersReducedMotion ? 0 : (0.7 + Math.random() * 0.5),
+        ease: 'power1.inOut',
+        onComplete: function () {
+          row.classList.remove('active');
+          row.classList.add('done');
+          statuses[i].textContent = doneLabel;
+          if (i === 2) {
+            setTimeout(function () {
+              document.getElementById('indFused').classList.add('visible');
+            }, 300);
+          }
+        }
+      });
+    }, startMs);
+  });
+
+  /* ── Hero parallax on scroll ──────────────────────────── */
+  if (!prefersReducedMotion) {
+    gsap.to('.hero-text', {
+      y: -80,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '#hero',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true
+      }
+    });
+  }
+
+  /* ── How it works: modes stagger in ──────────────────── */
+  ScrollTrigger.create({
+    trigger: '.section-how',
+    start: 'top 75%',
+    onEnter: function () {
+      gsap.to('[data-how]', {
+        opacity: 1, y: 0, duration: 0.8, stagger: 0.2, ease: 'power2.out'
+      });
+    },
+    once: true
+  });
+
+  /* ── Showcase rows ─────────────────────────────────────── */
+  if (prefersReducedMotion) {
+    gsap.set('.sc-device-wrap, .sc-copy', { opacity: 1, y: 0 });
+  } else {
+    document.querySelectorAll('[data-show-row]').forEach(function (row) {
+      ScrollTrigger.create({
+        trigger: row,
+        start: 'top 78%',
+        onEnter: function () {
+          var items = row.querySelectorAll('.sc-device-wrap, .sc-copy');
+          gsap.to(items, { opacity: 1, y: 0, duration: 0.8, stagger: 0.15, ease: 'power2.out' });
+        },
+        once: true
+      });
+      var phone = row.querySelector('.sc-phone');
+      if (phone) {
+        gsap.to(phone, {
+          yPercent: -6,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: row,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: true
+          }
+        });
+      }
+    });
+  }
+
+  /* ── Anti-hallucination headline lines reveal ─────────── */
+  var ahLines = document.querySelectorAll('.ah-line');
+  if (!prefersReducedMotion) {
+    gsap.set(ahLines, { clipPath: 'inset(0 100% 0 0)' });
+    ScrollTrigger.create({
+      trigger: '#anti-hallucination',
+      start: 'top 70%',
+      onEnter: function () {
+        gsap.to(ahLines, {
+          clipPath: 'inset(0 0% 0 0)', duration: 0.8, stagger: 0.12, ease: 'power3.out'
+        });
+      },
+      once: true
+    });
+  }
+
+  /* Anti-hallucination right side */
+  ScrollTrigger.create({
+    trigger: '#anti-hallucination',
+    start: 'top 65%',
+    onEnter: function () {
+      gsap.from('.anti-right', { opacity: 0, x: prefersReducedMotion ? 0 : 30, duration: 0.9, ease: 'power2.out' });
+    },
+    once: true
+  });
+
+  /* Anti stats counter */
+  ScrollTrigger.create({
+    trigger: '.anti-stat-row',
+    start: 'top 80%',
+    onEnter: function () {
+      gsap.from('.anti-stat', { opacity: 0, y: prefersReducedMotion ? 0 : 20, stagger: 0.1, duration: 0.6, ease: 'power2.out' });
+    },
+    once: true
+  });
+
+  /* ── AI Families: cards from alternating sides ────────── */
+  famCards.forEach(function (card, i) {
+    ScrollTrigger.create({
+      trigger: '.section-families',
+      start: 'top 70%',
+      onEnter: function () {
+        gsap.to(card, { opacity: 1, x: 0, duration: 0.8, delay: i * 0.15, ease: 'power2.out' });
+      },
+      once: true
+    });
+  });
+
+  /* ── Pricing cards ────────────────────────────────────── */
+  var priceCards = document.querySelectorAll('[data-price]');
+  ScrollTrigger.create({
+    trigger: '.section-pricing',
+    start: 'top 72%',
+    onEnter: function () {
+      gsap.to(priceCards, { opacity: 1, y: 0, duration: 0.7, stagger: 0.18, ease: 'power2.out' });
+    },
+    once: true
+  });
+
+  /* ── Footer ───────────────────────────────────────────── */
+  ScrollTrigger.create({
+    trigger: '.footer',
+    start: 'top 90%',
+    onEnter: function () {
+      gsap.to('.footer', { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' });
+    },
+    once: true
+  });
+
+  /* ── Magnetic buttons ─────────────────────────────────── */
+  if (!prefersReducedMotion) {
+    document.querySelectorAll('.btn-magnetic').forEach(function (btn) {
+      btn.addEventListener('mousemove', function (e) {
+        var rect = btn.getBoundingClientRect();
+        var x = e.clientX - rect.left - rect.width / 2;
+        var y = e.clientY - rect.top - rect.height / 2;
+        gsap.to(btn, { x: x * 0.25, y: y * 0.25, duration: 0.3, ease: 'power2.out' });
+      });
+      btn.addEventListener('mouseleave', function () {
+        gsap.to(btn, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1, 0.5)' });
+      });
+    });
+  }
+
+})();
+</script>  </body></html>
