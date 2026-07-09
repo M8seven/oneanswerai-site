@@ -1,11 +1,14 @@
 [
   {
-    "relation": ["delegate_permission/common.handle_all_urls"],
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
     "target": {
       "namespace": "android_app",
       "package_name": "com.valentinopaulon.oneanswerai",
       "sha256_cert_fingerprints": [
-        "PLACEHOLDER_REPLACE_WITH_ACTUAL_FINGERPRINT_FROM_EAS_BUILD"
+        "42:D0:4A:04:60:A9:CB:3B:35:66:E3:05:9D:A4:F8:B8:45:03:8D:EA:56:C6:C9:F9:DC:17:16:7E:F4:61:84:9B",
+        "A2:88:22:99:5C:58:CE:26:82:9B:59:A8:F4:50:DF:6F:CC:3F:2D:31:BE:76:0B:35:E2:C4:77:1F:1E:A0:9B:C1"
       ]
     }
   }
