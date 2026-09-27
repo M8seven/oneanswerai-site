@@ -331,7 +331,7 @@ footer {
       <li><a href="../index.html#models" onclick="closeNav()">AI Models</a></li>
       <li><a href="../index.html#pricing" onclick="closeNav()">Pricing</a></li>
       <li><a href="index.html" class="active" onclick="closeNav()">Blog</a></li>
-      <li><a href="https://apps.apple.com/app/oneanswerai/id6756519049" class="btn-primary nav-cta" onclick="closeNav()">Get the App</a></li>
+      <li><a href="https://apps.apple.com/app/oneanswerai/id6756519049" class="btn-primary nav-cta" data-store-link onclick="closeNav()">Get the App</a></li>
     </ul>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
       <span></span><span></span><span></span>
@@ -499,6 +499,12 @@ footer {
   navToggle.addEventListener('click', function () { navLinks.classList.toggle('open'); });
   window.closeNav = function () { navLinks.classList.remove('open'); };
 })();
+</script>
+<script>
+  // Android visitors: the generic download button (data-store-link) opens Google Play.
+  if (/Android/i.test(navigator.userAgent)) {
+    document.querySelectorAll('a[data-store-link]').forEach(function (a) { a.href = 'https://play.google.com/store/apps/details?id=com.valentinopaulon.oneanswerai'; });
+  }
 </script>
 </body>
 </html>
